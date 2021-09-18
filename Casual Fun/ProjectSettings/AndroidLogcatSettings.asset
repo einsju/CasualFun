@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "LHS0218A10002422",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "LHS0218A10002422",
+        "name": "com.einarsen.casualfun",
+        "processId": 20991,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,6 +12,30 @@
             "deviceId": "LHS0218A10002422",
             "name": "com.einarsen.hourchallenge",
             "processId": 14808,
+            "exited": true
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 3759,
+            "exited": true
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.duckduckgo.mobile.android",
+            "processId": 18528,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 19936,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 20991,
             "exited": false
         }
     ],
