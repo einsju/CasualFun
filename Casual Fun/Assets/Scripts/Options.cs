@@ -1,3 +1,4 @@
+using CasualFun.Handlers;
 using CasualFun.Storage;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +35,7 @@ namespace CasualFun
             _hasAudio = !_hasAudio;
             Preferences.SetAudio(_hasAudio);
             SetAudioButtonIcon();
+            AudioEventHandler.OnSoundOptionChanged(_hasAudio);
         }
 
         public void OnToggleMusic()
@@ -41,6 +43,7 @@ namespace CasualFun
             _hasMusic = !_hasMusic;
             Preferences.SetMusic(_hasMusic);
             SetMusicButtonIcon();
+            AudioEventHandler.OnMusicOptionChanged(_hasMusic);
         }
 
         public void OnRate() => Application.OpenURL("market://details?id=com.einarsen.casualfun");

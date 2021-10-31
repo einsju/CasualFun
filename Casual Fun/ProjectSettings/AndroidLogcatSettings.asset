@@ -3,17 +3,11 @@
     "m_SelectedPackage": {
         "deviceId": "LHS0218A10002422",
         "name": "com.einarsen.casualfun",
-        "processId": 9761,
+        "processId": 19585,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 25523,
-            "exited": true
-        },
         {
             "deviceId": "LHS0218A10002422",
             "name": "com.huawei.android.launcher",
@@ -23,85 +17,337 @@
         {
             "deviceId": "LHS0218A10002422",
             "name": "com.einarsen.casualfun",
-            "processId": 15094,
-            "exited": true
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 16640,
-            "exited": true
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 17977,
-            "exited": true
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 20203,
-            "exited": true
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 28448,
-            "exited": false
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 29803,
-            "exited": false
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 32064,
-            "exited": false
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 4082,
-            "exited": true
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
-            "processId": 6247,
-            "exited": false
-        },
-        {
-            "deviceId": "LHS0218A10002422",
-            "name": "com.einarsen.casualfun",
             "processId": 6922,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "LHS0218A10002422",
             "name": "com.einarsen.casualfun",
             "processId": 7832,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "LHS0218A10002422",
             "name": "com.einarsen.casualfun",
             "processId": 8565,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "LHS0218A10002422",
             "name": "com.einarsen.casualfun",
             "processId": 9075,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "LHS0218A10002422",
             "name": "com.einarsen.casualfun",
             "processId": 9761,
+            "exited": true
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 23236,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 17254,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 26173,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 7267,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 8847,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 11077,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 14916,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 15933,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 4662,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 7266,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 8675,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 10200,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 11338,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 12311,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 13111,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 19453,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 26239,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 29079,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 4744,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 6141,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 7816,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 9939,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 10789,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 11574,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 12942,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 13749,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 14496,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 15118,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 16287,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 17619,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 18705,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 19963,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 23845,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 25843,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 12026,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 13904,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 15104,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 16210,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 16849,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 27925,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 29041,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 30005,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 30903,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 31935,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 32585,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 1587,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 3019,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 15302,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 16502,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 18112,
+            "exited": false
+        },
+        {
+            "deviceId": "LHS0218A10002422",
+            "name": "com.einarsen.casualfun",
+            "processId": 19585,
             "exited": false
         }
     ],
