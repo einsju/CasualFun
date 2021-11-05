@@ -10,17 +10,8 @@ EditorBuildSettings:
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Orbitrator.unity
-    guid: 3fa94450b74424a439a196d8bd387a29
+    guid: 62cc19291d39de3408ea5d58028867c3
   - enabled: 1
     path: Assets/Scenes/Collector.unity
-    guid: a4166e284ccc0fc438ed52a75b6979e4
-  - enabled: 1
-    path: Assets/Scenes/TilosAdventure.unity
-    guid: fa1a8e2b2e9369449b3fa053b2bac714
-  - enabled: 1
-    path: Assets/Scenes/Breakhopper.unity
-    guid: 1d83719bd4cc0a04980f7fe34630a4fa
-  - enabled: 1
-    path: Assets/Scenes/JelloPuzzle.unity
-    guid: c303db3f6c4aded4197b33ae47d4ccd9
+    guid: 594af2b91cb4a7b4180217bb4b60a7eb
   m_configObjects: {}
