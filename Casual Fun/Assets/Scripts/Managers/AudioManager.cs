@@ -7,6 +7,9 @@ namespace CasualFun.Managers
     [RequireComponent(typeof(AudioSource))]
     public class AudioManager : MonoBehaviour
     {
+        [SerializeField] AudioClip button;
+        [SerializeField] AudioClip screenTransition;
+        
         AudioSource _audioSource;
         bool _hasAudio;
         //bool _hasMusic;
@@ -17,22 +20,20 @@ namespace CasualFun.Managers
             _hasAudio = Preferences.HasAudio;
         }
 
-        void OnEnable()
-        {
-            AudioEventHandler.PlaySound += PlaySound;
-            AudioEventHandler.SoundOptionChanged += SoundOptionChanged;
-        }
+        void OnEnable() => AudioEventHandler.SoundOptionChanged += SoundOptionChanged;
         
-        void OnDisable()
-        {
-            AudioEventHandler.PlaySound -= PlaySound;
-            AudioEventHandler.SoundOptionChanged -= SoundOptionChanged;
-        }
+        void OnDisable() => AudioEventHandler.SoundOptionChanged -= SoundOptionChanged;
 
-        void PlaySound(AudioClip clip)
+        public void OnButtonClick()
         {
             if (!_hasAudio) return;
-            _audioSource.PlayOneShot(clip);
+            _audioSource.PlayOneShot(button);
+        }
+        
+        public void OnScreenTransition()
+        {
+            if (!_hasAudio) return;
+            _audioSource.PlayOneShot(screenTransition);
         }
 
         void SoundOptionChanged(bool value) => _hasAudio = value;

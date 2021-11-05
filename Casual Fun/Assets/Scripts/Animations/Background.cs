@@ -13,6 +13,6 @@ namespace CasualFun.Animations
         void OnEnable() => EventManager.ScreenOpened += ScreenOpened;
         void OnDisable() => EventManager.ScreenOpened -= ScreenOpened;
 
-        void ScreenOpened() => transform.LeanMoveLocalX(Destination.x, duration).setEaseLinear();
+        void ScreenOpened() => transform.LeanMoveLocalX(Destination.x, duration).setEaseOutCirc();
     }
 }
