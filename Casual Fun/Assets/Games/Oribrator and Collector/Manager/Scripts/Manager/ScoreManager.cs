@@ -1,47 +1,43 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 namespace CasualFun.Games.OrbitratorAndCollector
 {
     public class ScoreManager
     {
-        public float time = 1;
-        public int currentPoints;
-        public string data = "HigthScorePointsData";
-        public Text scoreText;
+        public float Time = 1;
+        public int CurrentPoints;
+        public readonly string Data = "HighScorePointsData";
+        public readonly TextMeshProUGUI ScoreText;
 
-        int score;
+        int _score;
 
-        //Constructor
-        public ScoreManager(Text score, string gameName)
+        public ScoreManager(TextMeshProUGUI score, string gameName)
         {
-            scoreText = score;
-            data = data + gameName;
+            ScoreText = score;
+            Data += gameName;
         }
 
         public void AddScore()
         {
-            currentPoints++;
-            scoreText.text = currentPoints.ToString();
+            CurrentPoints++;
+            ScoreText.text = CurrentPoints.ToString();
         }
 
         public void SaveGameScore()
         {
-            if (currentPoints > score)
+            if (CurrentPoints > _score)
             {
-                score = currentPoints;
-                PlayerPrefs.SetInt(data, currentPoints);
-                scoreText.text = currentPoints.ToString();
+                _score = CurrentPoints;
+                PlayerPrefs.SetInt(Data, CurrentPoints);
+                ScoreText.text = CurrentPoints.ToString();
             }
             else
             {
-                scoreText.text = score.ToString();
+                ScoreText.text = _score.ToString();
             }
         }
 
-        public void LoadSaveGameScore()
-        {
-            scoreText.text = (score = PlayerPrefs.GetInt(data)).ToString();
-        }
+        public void LoadSaveGameScore() => ScoreText.text = (_score = PlayerPrefs.GetInt(Data)).ToString();
     }
 }

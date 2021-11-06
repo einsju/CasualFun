@@ -8,7 +8,9 @@ namespace CasualFun.Games.OrbitratorAndCollector
         [SerializeField] float percentThreshold = 0.5f;
 
         Store _store;
+        
         void Start() => _store = transform.GetComponentInParent<Store>();
+        
         public void OnBeginDrag(PointerEventData data) {}
         public void OnDrag(PointerEventData data) {}
         public void OnEndDrag(PointerEventData data)

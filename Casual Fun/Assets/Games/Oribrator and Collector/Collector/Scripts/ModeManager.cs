@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using CasualFun.Games.OrbitratorAndCollector;
+﻿using CasualFun.Games.OrbitratorAndCollector;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ModeManager : MonoBehaviour
 {
-    Text timeScore;
+    TextMeshProUGUI timeScore;
     GameManager gameManager;
     bool enableMode = false;
     public static ModeManager inst;
@@ -19,7 +18,7 @@ public class ModeManager : MonoBehaviour
         Button button = GameObject.FindGameObjectWithTag("modeButton").GetComponent<Button>();
         buttonImage = button.image;
         button.onClick.AddListener(()=>ChangeMode());
-        timeScore = GameObject.FindGameObjectWithTag("timeScore").GetComponent<Text>();
+        timeScore = GameObject.FindGameObjectWithTag("timeScore").GetComponent<TextMeshProUGUI>();
         gameManager = GameManager.Inst;
         passTime = time;
     }
@@ -27,16 +26,16 @@ public class ModeManager : MonoBehaviour
     {
         enableMode = !enableMode;
         timeScore.enabled = enableMode;
-        string data = gameManager.ScoreManager.data;
+        string data = gameManager.ScoreManager.Data;
         if (enableMode)
         {
             cacheTime = PlayerPrefs.GetFloat(data);
-            gameManager.ScoreManager.scoreText.text = cacheTime.ToString("0.0");
+            gameManager.ScoreManager.ScoreText.text = cacheTime.ToString("0.0");
             buttonImage.sprite = timerMode;
         }
         else
         {
-            gameManager.ScoreManager.scoreText.text = PlayerPrefs.GetInt(data).ToString();
+            gameManager.ScoreManager.ScoreText.text = PlayerPrefs.GetInt(data).ToString();
             buttonImage.sprite = survivalMode;
         }
         //enabled = !isActiveAndEnabled;
@@ -54,7 +53,7 @@ public class ModeManager : MonoBehaviour
     {
         passTime -= Time.deltaTime;
         survivalTime += Time.deltaTime;
-        gameManager.ScoreManager.scoreText.text = survivalTime.ToString("0.0");
+        gameManager.ScoreManager.ScoreText.text = survivalTime.ToString("0.0");
         timeScore.text = passTime.ToString("0.0");
         if (passTime <= 0)
         {
@@ -71,11 +70,11 @@ public class ModeManager : MonoBehaviour
         enabled = false;
         if (enableMode)
         {
-            Text scoreText = gameManager.ScoreManager.scoreText;
+            TextMeshProUGUI scoreText = gameManager.ScoreManager.ScoreText;
             if (survivalTime > cacheTime)
             {
                 cacheTime = survivalTime;
-                string data = gameManager.ScoreManager.data;
+                string data = gameManager.ScoreManager.Data;
                 PlayerPrefs.SetFloat(data, survivalTime);
                 scoreText.text = survivalTime.ToString("0.0");
             }

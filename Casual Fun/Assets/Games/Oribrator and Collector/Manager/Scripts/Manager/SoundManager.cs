@@ -1,14 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace CasualFun.Games.OrbitratorAndCollector
 {
     public class SoundManager : MonoBehaviour
     {
-        Image _buttonImage;
         public Sprite[] buttonSprites;
         public AudioClip[] sounds;
         public static SoundManager Inst;
+        
+        Image _buttonImage;
 
         void Awake()
         {
@@ -20,21 +22,14 @@ namespace CasualFun.Games.OrbitratorAndCollector
             SetToggle();
         }
 
-        void SetToggle()
-        {
-            _buttonImage.sprite = AudioListener.volume == 1 ? buttonSprites[1] : buttonSprites[0];
-        }
-
         public void ToggleAudio()
         {
-            AudioListener.volume = AudioListener.volume == 1 ? 0 : 1;
-
+            AudioListener.volume = Math.Abs(AudioListener.volume - 1f) <= 0.01f ? 0 : 1;
             SetToggle();
         }
 
-        public void PlaySound(int i)
-        {
-            AudioSource.PlayClipAtPoint(sounds[i], Vector3.zero);
-        }
+        void SetToggle() => _buttonImage.sprite = Math.Abs(AudioListener.volume - 1f) < 0.01f ? buttonSprites[1] : buttonSprites[0];
+
+        public void PlaySound(int i) => AudioSource.PlayClipAtPoint(sounds[i], Vector3.zero);
     }
 }

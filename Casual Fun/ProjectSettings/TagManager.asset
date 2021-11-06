@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Point
+  - Shopping
+  - storeContainer
+  - Reward
+  - RandomPlayerToggle
+  - BackButton
+  - coinsText
+  - Coins
+  - Score
+  - ScoreText
+  - Restart
+  - RestartUI
+  - MainMenu
+  - soundButton
   layers:
   - Default
   - TransparentFX
@@ -11,12 +26,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - GUI
+  - Enemy
+  - Player
+  - Point
+  - Coins
+  - NoCollision
   - 
   - 
   - 
@@ -40,4 +55,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GUI
+    uniqueID: 3524571831
     locked: 0

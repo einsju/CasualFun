@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace CasualFun.Games.OrbitratorAndCollector
 {
@@ -13,16 +13,14 @@ namespace CasualFun.Games.OrbitratorAndCollector
         [Header("References")] public ScoreManager ScoreManager;
         [HideInInspector] public SoundManager soundManager;
 
-        readonly Store _store;
+        CanvasManager _canvasManager;
+        // readonly Store _store;
 
         Player _player;
 
         public static GameManager Inst;
 
-        public GameManager(Store store)
-        {
-            _store = store;
-        }
+        // public GameManager(Store store) => _store = store;
 
         float GetBounds()
         {
@@ -30,21 +28,15 @@ namespace CasualFun.Games.OrbitratorAndCollector
             return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
         }
 
-        void Awake()
-        {
-            Inst = this;
-        }
+        void Awake() => Inst = this;
 
-        void Start()
-        {
-            Initialize();
-        }
+        void Start() => Initialize();
 
         void Initialize()
         {
             //setup score
             var scoreObject = GameObject.FindGameObjectWithTag("ScoreText");
-            var scoreText = scoreObject.GetComponent<Text>();
+            var scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
             var gameName = SceneManager.GetActiveScene().name;
             ScoreManager = new ScoreManager(scoreText, gameName);
             GetInstance();
@@ -59,6 +51,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         void GetInstance()
         {
+            _canvasManager = CanvasManager.Inst;
             soundManager = SoundManager.Inst;
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
@@ -70,36 +63,34 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         public void BeginPlay()
         {
+            _canvasManager.ShowCanvas(0);
             _player.Enable(true);
         }
-
+        
         public void ResetGame()
         {
+            _canvasManager.ShowCanvas(0);
+            _canvasManager.ShowCanvas(1);
             ResetValues();
             Time.timeScale = 1;
         }
 
         void ResetValues()
         {
-            ScoreManager.currentPoints = 0;
+            ScoreManager.CurrentPoints = 0;
             coins = 0;
             _player.Reset();
-            _store.RandomizePlayer();
+            // _store.RandomizePlayer();
         }
 
         public void Lose()
         {
-            _store.SaveCoins(coins);
+            _canvasManager.ShowCanvas(1);
+            // _store.SaveCoins(coins);
         }
 
-        public void AddCoins()
-        {
-            coins += coinsToEarn;
-        }
+        public void AddCoins() => coins += coinsToEarn;
 
-        public void ChangeScene(string scene)
-        {
-            SceneManager.LoadScene(scene);
-        }
+        public void ChangeScene(string scene) => SceneManager.LoadScene(scene);
     }
 }
