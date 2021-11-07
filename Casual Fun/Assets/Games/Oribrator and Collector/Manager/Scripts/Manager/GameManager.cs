@@ -12,11 +12,10 @@ namespace CasualFun.Games.OrbitratorAndCollector
         [HideInInspector] public int coins;
         [Header("References")] public ScoreManager ScoreManager;
         [HideInInspector] public SoundManager soundManager;
+        [SerializeField] Player player;
 
         CanvasManager _canvasManager;
         // readonly Store _store;
-
-        Player _player;
 
         public static GameManager Inst;
 
@@ -24,7 +23,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         float GetBounds()
         {
-            var bounds = _player.GetComponent<SpriteRenderer>();
+            var bounds = player.GetComponent<SpriteRenderer>();
             return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
         }
 
@@ -53,7 +52,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
         {
             _canvasManager = CanvasManager.Inst;
             soundManager = SoundManager.Inst;
-            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            // player = GameObject.FindWithTag("Player").GetComponent<Player>();
         }
 
         void CamSetup()
@@ -64,7 +63,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
         public void BeginPlay()
         {
             _canvasManager.ShowCanvas(0);
-            _player.Enable(true);
+            player.Enable(true);
         }
         
         public void ResetGame()
@@ -79,7 +78,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
         {
             ScoreManager.CurrentPoints = 0;
             coins = 0;
-            _player.Reset();
+            player.Reset();
             // _store.RandomizePlayer();
         }
 

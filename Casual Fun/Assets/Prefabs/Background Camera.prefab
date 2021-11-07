@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5176890136413519829}
   - component: {fileID: 5176890136413519828}
   m_Layer: 0
-  m_Name: GUI Camera
+  m_Name: Background Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
