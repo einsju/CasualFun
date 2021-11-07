@@ -52,7 +52,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
         {
             _canvasManager = CanvasManager.Inst;
             soundManager = SoundManager.Inst;
-            // player = GameObject.FindWithTag("Player").GetComponent<Player>();
         }
 
         void CamSetup()
