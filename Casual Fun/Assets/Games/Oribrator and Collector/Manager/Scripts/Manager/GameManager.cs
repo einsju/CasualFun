@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using CasualFun.Handlers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -14,7 +15,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
         [HideInInspector] public SoundManager soundManager;
         [SerializeField] Player player;
 
-        CanvasManager _canvasManager;
         // readonly Store _store;
 
         public static GameManager Inst;
@@ -50,7 +50,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         void GetInstance()
         {
-            _canvasManager = CanvasManager.Inst;
             soundManager = SoundManager.Inst;
         }
 
@@ -61,14 +60,12 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         public void BeginPlay()
         {
-            _canvasManager.ShowCanvas(0);
             player.Enable(true);
+            GameStateEventHandler.OnGameStarted();
         }
         
         public void ResetGame()
         {
-            _canvasManager.ShowCanvas(0);
-            _canvasManager.ShowCanvas(1);
             ResetValues();
             Time.timeScale = 1;
         }
@@ -83,7 +80,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         public void Lose()
         {
-            _canvasManager.ShowCanvas(1);
+            GameStateEventHandler.OnGameOver();
             // _store.SaveCoins(coins);
         }
 

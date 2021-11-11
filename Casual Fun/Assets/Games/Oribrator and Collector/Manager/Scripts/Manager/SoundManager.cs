@@ -16,10 +16,10 @@ namespace CasualFun.Games.OrbitratorAndCollector
         {
             Inst = this;
             var buttonObject = GameObject.FindGameObjectWithTag("soundButton");
-            _buttonImage = buttonObject.GetComponent<Image>();
-            var b = buttonObject.GetComponent<Button>();
-            b.onClick.AddListener(ToggleAudio);
-            SetToggle();
+            //_buttonImage = buttonObject.GetComponent<Image>();
+            //var b = buttonObject.GetComponent<Button>();
+            //b.onClick.AddListener(ToggleAudio);
+            //SetToggle();
         }
 
         public void ToggleAudio()
