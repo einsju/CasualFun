@@ -12,7 +12,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
         [FormerlySerializedAs("CamOffset")] public float camOffset = 11;
         [HideInInspector] public int coins;
         [Header("References")] public ScoreManager ScoreManager;
-        [HideInInspector] public SoundManager soundManager;
         [SerializeField] Player player;
 
         // readonly Store _store;
@@ -38,7 +37,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
             var scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
             var gameName = SceneManager.GetActiveScene().name;
             ScoreManager = new ScoreManager(scoreText, gameName);
-            GetInstance();
             // if (_store.player == null)
             // {
             //     _store.player = _player.GetComponent<SpriteRenderer>();
@@ -48,11 +46,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
             CamSetup();
         }
 
-        void GetInstance()
-        {
-            soundManager = SoundManager.Inst;
-        }
-
         void CamSetup()
         {
             if (Camera.main is { }) Camera.main.orthographicSize = GetBounds();
@@ -60,6 +53,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         public void BeginPlay()
         {
+            Time.timeScale = 1;
             player.Enable(true);
             GameStateEventHandler.OnGameStarted();
         }
@@ -67,7 +61,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
         public void ResetGame()
         {
             ResetValues();
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
         }
 
         void ResetValues()
@@ -81,6 +75,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
         public void Lose()
         {
             GameStateEventHandler.OnGameOver();
+            ResetValues();
             // _store.SaveCoins(coins);
         }
 

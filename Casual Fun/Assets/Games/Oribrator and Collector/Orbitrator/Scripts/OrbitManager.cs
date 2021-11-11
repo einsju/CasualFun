@@ -38,7 +38,6 @@ namespace CasualFun.Games.Orbitrator
 
                 _gameManager.ScoreManager.AddScore();
                 _gameManager.coins += 1;
-                _gameManager.soundManager.PlaySound(0);
             }
 
             if (!collision.CompareTag($"Enemy")) return;
@@ -47,7 +46,6 @@ namespace CasualFun.Games.Orbitrator
             StopAllCoroutines();
             _gameManager.Lose();
             _gameManager.ScoreManager.SaveGameScore();
-            _gameManager.soundManager.PlaySound(1);
         }
 
         void Direction()

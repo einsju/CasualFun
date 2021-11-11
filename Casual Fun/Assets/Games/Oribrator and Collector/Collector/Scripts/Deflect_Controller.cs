@@ -107,14 +107,14 @@ public class Deflect_Controller : Player
         {
             case "Enemy":
                 Time.timeScale = 0;
-                gameManager.soundManager.PlaySound(0);
+                //gameManager.soundManager.PlaySound(0);
                 Lose();
                 break;
             case "Point":
                 collision.transform.position = spawner.RandomPosition();
                 PlayEffect(collision.transform.position);
                 spawner.AddPoint();
-                gameManager.soundManager.PlaySound(1);
+                //gameManager.soundManager.PlaySound(1);
                 if (modeManager.isActiveAndEnabled)
                 {
                     modeManager.ResetTimer();
@@ -128,7 +128,7 @@ public class Deflect_Controller : Player
                 collision.gameObject.SetActive(false);
                 PlayEffect(collision.transform.position);
                 spawner.EnableCoins();
-                gameManager.soundManager.PlaySound(1);
+                //gameManager.soundManager.PlaySound(1);
                 break;
         }
     }
