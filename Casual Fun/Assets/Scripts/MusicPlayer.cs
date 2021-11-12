@@ -1,5 +1,6 @@
 using CasualFun.Handlers;
 using CasualFun.Storage;
+using CasualFun.Utilities;
 using UnityEngine;
 
 namespace CasualFun
@@ -7,23 +8,18 @@ namespace CasualFun
     [RequireComponent(typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour
     {
-        [SerializeField] int numberOfMusicThemes = 14;
-        
         AudioSource _audioSource;
         bool _hasMusic;
 
         void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
-            _audioSource.clip = PickRandomTheme();
+            _audioSource.clip = MusicThemeCoordinator.GetMusicTheme();
+            
             
             _hasMusic = Preferences.HasMusic;
-            if (!_hasMusic) return;
-            _audioSource.Play();
+            if (_hasMusic) _audioSource.Play();
         }
-        
-        int RandomTheme => Random.Range(1, numberOfMusicThemes + 1);
-        AudioClip PickRandomTheme() => Resources.Load($"Music/Theme_{RandomTheme}") as AudioClip;
 
         void StopOrResume(bool hasMusic)
         {
