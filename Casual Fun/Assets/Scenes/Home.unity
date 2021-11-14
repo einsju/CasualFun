@@ -7884,10 +7884,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6974218010384184995, guid: 5b66a526b4250434b839e0cd52d2f904,
+        type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974218010384184996, guid: 5b66a526b4250434b839e0cd52d2f904,
+        type: 3}
+      propertyPath: screenTransition
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d0c85759ecafc74fa8cac9c649c8270, type: 3}
     - target: {fileID: 6974218010384184997, guid: 5b66a526b4250434b839e0cd52d2f904,
         type: 3}
       propertyPath: m_Name
       value: '[AudioPlayer]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974218010384184997, guid: 5b66a526b4250434b839e0cd52d2f904,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b66a526b4250434b839e0cd52d2f904, type: 3}

@@ -4,7 +4,7 @@ namespace CasualFun.Games.Orbitrator
 {
     public class OrbitEnemy : MonoBehaviour
     {
-        const float Speed = 0.05f;
+        const float Speed = 0.15f;
         Transform _transform;
 
         void Awake() => _transform = transform;

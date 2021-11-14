@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6974218010384184995}
   - component: {fileID: 6974218010384184996}
   m_Layer: 0
-  m_Name: '[AudioManager]'
+  m_Name: '[AudioPlayer]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
