@@ -9,10 +9,12 @@ namespace CasualFun.Games.Orbitrator
         public float speed = -100;
         SpriteRenderer _playerSprite;
         GameManager _gameManager;
+        AudioPlayer _audioPlayer;
 
         void Awake()
         {
             _playerSprite = GetComponent<SpriteRenderer>();
+            _audioPlayer = FindObjectOfType<AudioPlayer>();
             CreatePool();
         }
 
@@ -38,12 +40,14 @@ namespace CasualFun.Games.Orbitrator
 
                 _gameManager.ScoreManager.AddScore();
                 _gameManager.coins += 1;
+                _audioPlayer.OnItemCollected();
             }
 
             if (!collision.CompareTag($"Enemy")) return;
             Time.timeScale = 0;
             enabled = false;
             StopAllCoroutines();
+            _audioPlayer.OnGameOver();
             _gameManager.Lose();
             _gameManager.ScoreManager.SaveGameScore();
         }

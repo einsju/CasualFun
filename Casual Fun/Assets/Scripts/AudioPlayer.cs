@@ -9,6 +9,8 @@ namespace CasualFun
     {
         [SerializeField] AudioClip button;
         [SerializeField] AudioClip screenTransition;
+        [SerializeField] AudioClip itemCollected;
+        [SerializeField] AudioClip gameOver;
         
         AudioSource _audioSource;
         bool _hasAudio;
@@ -33,6 +35,18 @@ namespace CasualFun
         {
             if (!_hasAudio) return;
             _audioSource.PlayOneShot(screenTransition);
+        }
+
+        public void OnItemCollected()
+        {
+            if (!_hasAudio) return;
+            _audioSource.PlayOneShot(itemCollected);
+        }
+
+        public void OnGameOver()
+        {
+            if (!_hasAudio) return;
+            _audioSource.PlayOneShot(gameOver);
         }
 
         void SoundOptionChanged(bool value) => _hasAudio = value;

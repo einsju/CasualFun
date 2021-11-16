@@ -7893,7 +7893,7 @@ PrefabInstance:
         type: 3}
       propertyPath: screenTransition
       value: 
-      objectReference: {fileID: 8300000, guid: 4d0c85759ecafc74fa8cac9c649c8270, type: 3}
+      objectReference: {fileID: 8300000, guid: 3a9bd2327cd76f242af9117d1dc5ffeb, type: 3}
     - target: {fileID: 6974218010384184997, guid: 5b66a526b4250434b839e0cd52d2f904,
         type: 3}
       propertyPath: m_Name

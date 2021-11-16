@@ -12,7 +12,7 @@ namespace CasualFun
 
         ScreenManager _screenManager;
 
-        void Start() =>  _screenManager = new ScreenManager(new List<GameObject> { mainScreen, optionsScreen, leaderboardScreen });
+        void Start() => _screenManager = new ScreenManager(new List<GameObject> { mainScreen, optionsScreen, leaderboardScreen });
         public void OnOptions() => OpenScreenWithAnimation(optionsScreen);
         public void OnLeaderboard() => OpenScreenWithAnimation(leaderboardScreen);
         public void OnHome() => OpenScreenWithAnimation(mainScreen);
