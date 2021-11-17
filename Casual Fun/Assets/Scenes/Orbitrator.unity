@@ -2083,6 +2083,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06416cd95b07b704daeeb80db97293f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointCollectableSprites:
+  - {fileID: 21300000, guid: e5c82e113bd56ef4fab2c8624084220f, type: 3}
+  - {fileID: 21300000, guid: ce2a697f8a92d084a8aa7e60c13877d1, type: 3}
+  - {fileID: 21300000, guid: 066ef4ae00d4cd2429b2125a41c400b7, type: 3}
   speed: 100
   enemy: {fileID: 8377834460544938001, guid: 20dcabf0754b5b7449bba740158cb357, type: 3}
   point: {fileID: 676661121162127671}

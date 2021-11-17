@@ -6,6 +6,8 @@ namespace CasualFun.Games.Orbitrator
 {
     public class OrbitManager : Player
     {
+        [SerializeField] Sprite[] pointCollectableSprites;
+        
         public float speed = -100;
         SpriteRenderer _playerSprite;
         GameManager _gameManager;
@@ -91,6 +93,13 @@ namespace CasualFun.Games.Orbitrator
         {
             float random = Random.Range(-360, 360);
             point.transform.eulerAngles = new Vector3(0, 0, random);
+            RandomizePointCollectableSprite();
+        }
+
+        void RandomizePointCollectableSprite()
+        {
+            var randomIndex = Random.Range(0, pointCollectableSprites.Length);
+            point.GetComponentInChildren<SpriteRenderer>().sprite = pointCollectableSprites[randomIndex];
         }
 
         int _index;
