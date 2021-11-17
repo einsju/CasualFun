@@ -53,7 +53,6 @@ namespace CasualFun.Games.OrbitratorAndCollector
 
         public void BeginPlay()
         {
-            Time.timeScale = 1;
             player.Enable(true);
             GameStateEventHandler.OnGameStarted();
         }

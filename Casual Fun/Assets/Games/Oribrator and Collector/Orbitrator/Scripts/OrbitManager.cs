@@ -44,7 +44,6 @@ namespace CasualFun.Games.Orbitrator
             }
 
             if (!collision.CompareTag($"Enemy")) return;
-            Time.timeScale = 0;
             enabled = false;
             StopAllCoroutines();
             _audioPlayer.OnGameOver();
