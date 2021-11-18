@@ -7,6 +7,8 @@ namespace CasualFun.Games.Orbitrator
     public class OrbitManager : Player
     {
         [SerializeField] Sprite[] pointCollectableSprites;
+        [SerializeField] GameObject explosion;
+        [SerializeField] GameObject collectPrefab;
         
         public float speed = -100;
         SpriteRenderer _playerSprite;
@@ -34,12 +36,12 @@ namespace CasualFun.Games.Orbitrator
         {
             if (collision.CompareTag($"Point"))
             {
+                Instantiate(collectPrefab, collision.transform.position, Quaternion.identity);
                 RandomPointPosition();
                 if (Time.timeScale < 1.8f)
                 {
                     Time.timeScale += 0.05f;
                 }
-
                 _gameManager.ScoreManager.AddScore();
                 _gameManager.coins += 1;
                 _audioPlayer.OnItemCollected();
@@ -50,6 +52,7 @@ namespace CasualFun.Games.Orbitrator
             StopAllCoroutines();
             _audioPlayer.OnGameOver();
             _gameManager.Lose();
+            Instantiate(explosion, collision.transform.position, collision.transform.rotation);
             _gameManager.ScoreManager.SaveGameScore();
         }
 

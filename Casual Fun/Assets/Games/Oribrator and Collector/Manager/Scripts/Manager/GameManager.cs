@@ -70,7 +70,7 @@ namespace CasualFun.Games.OrbitratorAndCollector
             player.Reset();
             // _store.RandomizePlayer();
         }
-
+        
         public void Lose()
         {
             GameStateEventHandler.OnGameOver();
