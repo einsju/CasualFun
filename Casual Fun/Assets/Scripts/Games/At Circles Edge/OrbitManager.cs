@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using CasualFun.Managers;
 using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
@@ -8,17 +9,20 @@ namespace CasualFun.Games.AtCirclesEdge
         [SerializeField] Sprite[] pointCollectableSprites;
         [SerializeField] GameObject explosion;
         [SerializeField] GameObject collectPrefab;
+        [SerializeField] Transform enemyParent;
         
         public float speed = -100;
         SpriteRenderer _playerSprite;
         GameManager _gameManager;
         AudioPlayer _audioPlayer;
 
+        PoolManager _poolManager;
+
         void Awake()
         {
             _playerSprite = GetComponent<SpriteRenderer>();
             _audioPlayer = FindObjectOfType<AudioPlayer>();
-            CreatePool();
+            _poolManager = new PoolManager(enemy, enemyParent);
         }
 
         void Start() => _gameManager = GameManager.Inst;
@@ -64,17 +68,14 @@ namespace CasualFun.Games.AtCirclesEdge
         public
             GameObject enemy, point;
 
-        GameObject[] _enemies;
-
         bool _canSpawn = true;
 
         IEnumerator Spawner()
         {
             while (_canSpawn)
             {
-                var e = GetEnemy();
-                e.transform.position = Vector2.zero;
-                e.transform.rotation = transform.rotation;
+                var e = _poolManager.GrabObject(Vector2.zero, transform.rotation);
+                
                 if (speed < 0)
                 {
                     //Left
@@ -88,6 +89,7 @@ namespace CasualFun.Games.AtCirclesEdge
 
                 _canSpawn = true;
                 yield return new WaitForSeconds(0.3f);
+                _poolManager.ReleaseObject(e);
             }
         }
 
@@ -102,26 +104,6 @@ namespace CasualFun.Games.AtCirclesEdge
         {
             var randomIndex = Random.Range(0, pointCollectableSprites.Length);
             point.GetComponentInChildren<SpriteRenderer>().sprite = pointCollectableSprites[randomIndex];
-        }
-
-        int _index;
-
-        GameObject GetEnemy()
-        {
-            _index++;
-            if (_index >= _enemies.Length) _index = 0;
-            return _enemies[_index];
-        }
-
-        void CreatePool()
-        {
-            const int max = 10;
-            _enemies = new GameObject[max];
-            RandomPointPosition();
-            for (var i = 0; i < max; i++)
-            {
-                _enemies[i] = Instantiate(enemy, Vector3.one * 100, Quaternion.identity);
-            }
         }
 
         public override void Enable(bool enable) => enabled = enable;

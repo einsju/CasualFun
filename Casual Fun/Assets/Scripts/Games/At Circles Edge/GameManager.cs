@@ -1,4 +1,5 @@
-﻿using CasualFun.Handlers;
+﻿using System;
+using CasualFun.Handlers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,8 @@ namespace CasualFun.Games.AtCirclesEdge
 
         public static GameManager Inst;
 
+        GameStateHandler _gameStateHandler;
+
         // public GameManager(Store store) => _store = store;
 
         float GetBounds()
@@ -26,7 +29,17 @@ namespace CasualFun.Games.AtCirclesEdge
             return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
         }
 
-        void Awake() => Inst = this;
+        void Awake()
+        {
+            Inst = this;
+            _gameStateHandler = FindObjectOfType<GameStateHandler>();
+            GameStateEventHandler.GameStarted += GameStarted;
+        }
+
+        void OnDestroy()
+        {
+            GameStateEventHandler.GameStarted -= GameStarted;
+        }
 
         void Start() => Initialize();
 
@@ -51,11 +64,7 @@ namespace CasualFun.Games.AtCirclesEdge
             if (Camera.main is { }) Camera.main.orthographicSize = GetBounds();
         }
 
-        public void BeginPlay()
-        {
-            player.Enable(true);
-            GameStateEventHandler.OnGameStarted();
-        }
+        void GameStarted() => player.Enable(true);
         
         public void ResetGame()
         {
@@ -73,7 +82,7 @@ namespace CasualFun.Games.AtCirclesEdge
         
         public void Lose()
         {
-            GameStateEventHandler.OnGameOver();
+            _gameStateHandler.EndGame();
             ResetValues();
             // _store.SaveCoins(coins);
         }

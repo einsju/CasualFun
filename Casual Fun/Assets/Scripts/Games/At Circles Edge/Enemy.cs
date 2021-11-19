@@ -2,7 +2,7 @@
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class OrbitEnemy : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
         const float Speed = 0.15f;
         Transform _transform;
