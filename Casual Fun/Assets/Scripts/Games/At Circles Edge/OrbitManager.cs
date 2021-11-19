@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using CasualFun.Games.AtCirclesEdgeAndInBetween;
 using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
@@ -42,7 +41,7 @@ namespace CasualFun.Games.AtCirclesEdge
                 {
                     Time.timeScale += 0.05f;
                 }
-                _gameManager.ScoreManager.AddScore();
+                // _gameManager.ScoreManager.AddScore();
                 _gameManager.coins += 1;
                 _audioPlayer.OnItemCollected();
             }
@@ -53,7 +52,7 @@ namespace CasualFun.Games.AtCirclesEdge
             _audioPlayer.OnGameOver();
             _gameManager.Lose();
             Instantiate(explosion, collision.transform.position, collision.transform.rotation);
-            _gameManager.ScoreManager.SaveGameScore();
+            // _gameManager.ScoreManager.SaveGameScore();
         }
 
         void Direction()

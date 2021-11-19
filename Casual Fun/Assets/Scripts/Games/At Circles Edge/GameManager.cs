@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-namespace CasualFun.Games.AtCirclesEdgeAndInBetween
+namespace CasualFun.Games.AtCirclesEdge
 {
     public class GameManager : MonoBehaviour
     {
         [Header("Settings")] public int coinsToEarn = 10;
         [FormerlySerializedAs("CamOffset")] public float camOffset = 11;
         [HideInInspector] public int coins;
-        [Header("References")] public ScoreManager ScoreManager;
+        //[Header("References")] public ScoreManager ScoreManager;
         [SerializeField] Player player;
 
         // readonly Store _store;
@@ -36,13 +36,13 @@ namespace CasualFun.Games.AtCirclesEdgeAndInBetween
             var scoreObject = GameObject.FindGameObjectWithTag("ScoreText");
             var scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
             var gameName = SceneManager.GetActiveScene().name;
-            ScoreManager = new ScoreManager(scoreText, gameName);
+            //ScoreManager = new ScoreManager(scoreText, gameName);
             // if (_store.player == null)
             // {
             //     _store.player = _player.GetComponent<SpriteRenderer>();
             // }
 
-            ScoreManager.LoadSaveGameScore();
+            //ScoreManager.LoadSaveGameScore();
             CamSetup();
         }
 
@@ -65,7 +65,7 @@ namespace CasualFun.Games.AtCirclesEdgeAndInBetween
 
         void ResetValues()
         {
-            ScoreManager.CurrentPoints = 0;
+            //ScoreManager.CurrentPoints = 0;
             coins = 0;
             player.Reset();
             // _store.RandomizePlayer();

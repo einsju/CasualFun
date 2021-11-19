@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using CasualFun.Games.AtCirclesEdgeAndInBetween;
 using UnityEngine;
 
 namespace CasualFun.Games.InBetween
@@ -116,7 +114,7 @@ namespace CasualFun.Games.InBetween
 
         public void AddPoint()
         {
-            gameManager.ScoreManager.AddScore();
+            //gameManager.ScoreManager.AddScore();
             if (spawnCoin == true)
             {
                 indexCoins++;

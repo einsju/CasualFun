@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CasualFun.Games.AtCirclesEdgeAndInBetween
+namespace CasualFun
 {
     public class Player : MonoBehaviour
     {

@@ -1,5 +1,4 @@
-﻿using CasualFun.Games.AtCirclesEdgeAndInBetween;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -29,16 +28,16 @@ namespace CasualFun.Games.InBetween
         {
             enableMode = !enableMode;
             timeScore.enabled = enableMode;
-            string data = gameManager.ScoreManager.Data;
+            //string data = gameManager.ScoreManager.Data;
             if (enableMode)
             {
-                cacheTime = PlayerPrefs.GetFloat(data);
-                gameManager.ScoreManager.ScoreText.text = cacheTime.ToString("0.0");
+                // cacheTime = PlayerPrefs.GetFloat(data);
+                //gameManager.ScoreManager.ScoreText.text = cacheTime.ToString("0.0");
                 buttonImage.sprite = timerMode;
             }
             else
             {
-                gameManager.ScoreManager.ScoreText.text = PlayerPrefs.GetInt(data).ToString();
+                //gameManager.ScoreManager.ScoreText.text = PlayerPrefs.GetInt(data).ToString();
                 buttonImage.sprite = survivalMode;
             }
             //enabled = !isActiveAndEnabled;
@@ -58,7 +57,7 @@ namespace CasualFun.Games.InBetween
         {
             passTime -= Time.deltaTime;
             survivalTime += Time.deltaTime;
-            gameManager.ScoreManager.ScoreText.text = survivalTime.ToString("0.0");
+            //gameManager.ScoreManager.ScoreText.text = survivalTime.ToString("0.0");
             timeScore.text = passTime.ToString("0.0");
             if (passTime <= 0)
             {
@@ -77,25 +76,25 @@ namespace CasualFun.Games.InBetween
             enabled = false;
             if (enableMode)
             {
-                TextMeshProUGUI scoreText = gameManager.ScoreManager.ScoreText;
+                // TextMeshProUGUI scoreText = gameManager.ScoreManager.ScoreText;
                 if (survivalTime > cacheTime)
                 {
                     cacheTime = survivalTime;
-                    string data = gameManager.ScoreManager.Data;
-                    PlayerPrefs.SetFloat(data, survivalTime);
-                    scoreText.text = survivalTime.ToString("0.0");
+                    // string data = gameManager.ScoreManager.Data;
+                    // PlayerPrefs.SetFloat(data, survivalTime);
+                    // scoreText.text = survivalTime.ToString("0.0");
                 }
                 else
                 {
-                    scoreText.text =
-                        cacheTime.ToString("0.0");
+                    // scoreText.text =
+                        // cacheTime.ToString("0.0");
                 }
 
                 timeScore.text = 0.ToString("0.0");
             }
             else
             {
-                gameManager.ScoreManager.SaveGameScore();
+                // gameManager.ScoreManager.SaveGameScore();
             }
         }
     }
