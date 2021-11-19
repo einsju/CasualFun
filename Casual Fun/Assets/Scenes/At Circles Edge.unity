@@ -138,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 36958802314334731, guid: 3418a80d44568624eaa8e1ab1f081573,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 36958802314334966, guid: 3418a80d44568624eaa8e1ab1f081573,
         type: 3}
@@ -153,7 +153,7 @@ PrefabInstance:
     - target: {fileID: 36958802314334966, guid: 3418a80d44568624eaa8e1ab1f081573,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 36958802314334966, guid: 3418a80d44568624eaa8e1ab1f081573,
         type: 3}
@@ -259,6 +259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowReward
+      objectReference: {fileID: 0}
+    - target: {fileID: 36958802867451292, guid: 3418a80d44568624eaa8e1ab1f081573,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CasualFun.Games.AtCirclesEdgeAndInBetween.Store, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 36958803113775872, guid: 3418a80d44568624eaa8e1ab1f081573,
         type: 3}
@@ -2145,7 +2150,7 @@ Transform:
   - {fileID: 128894386}
   - {fileID: 676661121162127672}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064676754
 GameObject:
