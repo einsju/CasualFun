@@ -1,56 +1,61 @@
 using System.Collections.Generic;
 using System.Linq;
+using CasualFun.Handlers;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CasualFun.Managers
 {
     public class PoolManager
     {
-        readonly GameObject _original;
-        readonly Transform _parent;
-        readonly int _size;
-        readonly Stack<GameObject> _availableInstances;
-
-        public PoolManager(GameObject original, Transform parent, int size = 10)
-        {
-            _original = original;
-            _parent = parent;
-            _size = size;
-            _availableInstances = new Stack<GameObject>(_size);
-            
-            CreatePool();
-        }
-
-        void CreatePool()
-        {
-            for (var i = 0; i < _size; i++)
-            {
-                var objectToInstantiate = Object.Instantiate(_original, _parent, true);
-                _availableInstances.Push(objectToInstantiate);
-            }
-        }
-
-        public GameObject GrabObject() => ObjectToReturn(Vector3.zero, Quaternion.identity);
-
-        public GameObject GrabObject(Vector3 position, Quaternion rotation) => ObjectToReturn(position, rotation);
+        readonly GameObject _poolObject;
+        readonly Stack<GameObject> _availableObjects;
         
-        public void ReleaseObject(GameObject objectToRelease)
+        IList<GameObject> _allObjects;
+
+        public PoolManager(GameObject poolObject, Transform parent, int size = 20)
         {
-            objectToRelease.SetActive(false);
-            _availableInstances.Push(objectToRelease);
+            _poolObject = poolObject;
+            _availableObjects = new Stack<GameObject>(size);
+            
+            CreatePool(parent, size);
+            GameStateEventHandler.GameOver += ResetPool;
+        }
+        
+        ~PoolManager() => GameStateEventHandler.GameOver -= ResetPool;
+
+        void CreatePool(Transform parent, int size)
+        {
+            for (var i = 0; i < size; i++)
+                _availableObjects.Push(Object.Instantiate(_poolObject, parent, true));
+            
+            _allObjects = _availableObjects.ToList();
         }
 
-        GameObject ObjectToReturn(Vector3 position, Quaternion rotation)
+        public GameObject TakeFromPool(Vector3 position, Quaternion rotation)
+            => Take(position, rotation);
+        
+        GameObject Take(Vector3 position, Quaternion rotation)
         {
-            var objectFromStack = ObjectFromStack;
-            
+            var objectFromStack = _availableObjects.Pop();
             objectFromStack.transform.position = position;
             objectFromStack.transform.rotation = rotation;
             objectFromStack.SetActive(true);
-
+           
             return objectFromStack;
         }
-        
-        GameObject ObjectFromStack => _availableInstances.Any() ? _availableInstances.Pop() : Object.Instantiate(_original);
+
+        void ReturnToPool(GameObject objectToRelease)
+        {
+            if (objectToRelease is null) return;
+            objectToRelease.SetActive(false);
+            _availableObjects.Push(objectToRelease);
+        }
+
+        void ResetPool()
+        {
+            foreach (var gameObject in _allObjects)
+                ReturnToPool(gameObject);
+        }
     }
 }

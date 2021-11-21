@@ -15,11 +15,16 @@ namespace CasualFun
         {
             _audioSource = GetComponent<AudioSource>();
             _audioSource.clip = MusicThemeCoordinator.GetMusicTheme();
-            
-            
+
             _hasMusic = Preferences.HasMusic;
             if (_hasMusic) _audioSource.Play();
         }
+
+        void OnEnable() => AudioEventHandler.MusicOptionChanged += MusicOptionChanged;
+
+        void OnDisable() => AudioEventHandler.MusicOptionChanged -= MusicOptionChanged;
+
+        void MusicOptionChanged(bool value) => StopOrResume(value);
 
         void StopOrResume(bool hasMusic)
         {
@@ -33,11 +38,5 @@ namespace CasualFun
             
             _audioSource.Play();
         }
-
-        void OnEnable() => AudioEventHandler.MusicOptionChanged += MusicOptionChanged;
-        
-        void OnDisable() => AudioEventHandler.MusicOptionChanged -= MusicOptionChanged;
-
-        void MusicOptionChanged(bool value) => StopOrResume(value);
     }
 }

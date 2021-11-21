@@ -4,5 +4,5 @@ using UnityEngine;
 public class GameStateHandler : MonoBehaviour
 {
     public void StartGame() => GameStateEventHandler.OnGameStarted();
-    public void EndGame() => GameStateEventHandler.OnGameOver();
+    public static void EndGame() => GameStateEventHandler.OnGameOver();
 }

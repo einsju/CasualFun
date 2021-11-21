@@ -9,6 +9,8 @@ namespace CasualFun.Games.AtCirclesEdge
 
         void Awake() => _transform = transform;
 
-        void Update() => _transform.position += _transform.up * Speed;
+        void Update() => Move();
+        
+        void Move() => _transform.position += _transform.up * Speed;
     }
 }

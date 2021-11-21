@@ -1,94 +1,25 @@
-﻿using System;
-using CasualFun.Handlers;
-using TMPro;
+﻿using CasualFun.Handlers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
     public class GameManager : MonoBehaviour
     {
-        [Header("Settings")] public int coinsToEarn = 10;
-        [FormerlySerializedAs("CamOffset")] public float camOffset = 11;
-        [HideInInspector] public int coins;
-        //[Header("References")] public ScoreManager ScoreManager;
-        [SerializeField] Player player;
-
-        // readonly Store _store;
-
-        public static GameManager Inst;
-
-        GameStateHandler _gameStateHandler;
-
-        // public GameManager(Store store) => _store = store;
-
-        float GetBounds()
-        {
-            var bounds = player.GetComponent<SpriteRenderer>();
-            return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
-        }
+        // [SerializeField] Player player;
 
         void Awake()
         {
-            Inst = this;
-            _gameStateHandler = FindObjectOfType<GameStateHandler>();
-            GameStateEventHandler.GameStarted += GameStarted;
+            // GameStateEventHandler.GameStarted += GameStarted;
+            // GameStateEventHandler.GameOver += GameOver;
         }
 
         void OnDestroy()
         {
-            GameStateEventHandler.GameStarted -= GameStarted;
+            // GameStateEventHandler.GameStarted -= GameStarted;
+            // GameStateEventHandler.GameOver -= GameOver;
         }
 
-        void Start() => Initialize();
-
-        void Initialize()
-        {
-            //setup score
-            var scoreObject = GameObject.FindGameObjectWithTag("ScoreText");
-            var scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
-            var gameName = SceneManager.GetActiveScene().name;
-            //ScoreManager = new ScoreManager(scoreText, gameName);
-            // if (_store.player == null)
-            // {
-            //     _store.player = _player.GetComponent<SpriteRenderer>();
-            // }
-
-            //ScoreManager.LoadSaveGameScore();
-            CamSetup();
-        }
-
-        void CamSetup()
-        {
-            if (Camera.main is { }) Camera.main.orthographicSize = GetBounds();
-        }
-
-        void GameStarted() => player.Enable(true);
-        
-        public void ResetGame()
-        {
-            ResetValues();
-            //Time.timeScale = 1;
-        }
-
-        void ResetValues()
-        {
-            //ScoreManager.CurrentPoints = 0;
-            coins = 0;
-            player.Reset();
-            // _store.RandomizePlayer();
-        }
-        
-        public void Lose()
-        {
-            _gameStateHandler.EndGame();
-            ResetValues();
-            // _store.SaveCoins(coins);
-        }
-
-        public void AddCoins() => coins += coinsToEarn;
-
-        public void ChangeScene(string scene) => SceneManager.LoadScene(scene);
+        // void GameStarted() => player.Enable(true);
+        // void GameOver() => player.Reset();
     }
 }
