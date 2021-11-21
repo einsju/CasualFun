@@ -12,7 +12,7 @@ namespace CasualFun.Games.InBetween
         [FormerlySerializedAs("CamOffset")] public float camOffset = 11;
         [HideInInspector] public int coins;
         //[Header("References")] public ScoreManager ScoreManager;
-        [SerializeField] Player player;
+        //[SerializeField] Player player;
 
         // readonly Store _store;
 
@@ -20,11 +20,11 @@ namespace CasualFun.Games.InBetween
 
         // public GameManager(Store store) => _store = store;
 
-        float GetBounds()
-        {
-            var bounds = player.GetComponent<SpriteRenderer>();
-            return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
-        }
+        // float GetBounds()
+        // {
+        //     var bounds = player.GetComponent<SpriteRenderer>();
+        //     return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
+        // }
 
         void Awake() => Inst = this;
 
@@ -48,12 +48,12 @@ namespace CasualFun.Games.InBetween
 
         void CamSetup()
         {
-            if (Camera.main is { }) Camera.main.orthographicSize = GetBounds();
+            // if (Camera.main is { }) Camera.main.orthographicSize = GetBounds();
         }
 
         public void BeginPlay()
         {
-            player.Enable(true);
+            // player.Enable(true);
             GameStateEventHandler.OnGameStarted();
         }
         
@@ -67,7 +67,7 @@ namespace CasualFun.Games.InBetween
         {
             //ScoreManager.CurrentPoints = 0;
             coins = 0;
-            player.Reset();
+            // player.Reset();
             // _store.RandomizePlayer();
         }
         

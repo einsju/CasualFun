@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace CasualFun.Games.InBetween
 {
-    public class Deflect_Controller : Player
+    public class Deflect_Controller : MonoBehaviour
     {
         #region Variables
 
