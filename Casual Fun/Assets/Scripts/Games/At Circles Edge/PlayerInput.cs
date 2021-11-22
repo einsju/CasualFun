@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerInput : GameBehaviour
 {
-    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] Player player;
 
     void Update()
     {
         if (!Input.GetButtonDown("Fire1")) return;
-        playerMovement.ChangeDirection();
+        player.ChangeDirection();
     }
 }

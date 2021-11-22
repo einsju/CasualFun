@@ -7,26 +7,17 @@ namespace CasualFun.Games.AtCirclesEdge
     public class EnemySpawner : GameBehaviour
     {
         [SerializeField] float spawnRate = 0.3f;
-        [SerializeField] GameObject enemy;
+        [SerializeField] Enemy enemy;
+        [SerializeField] Player player;
 
         float _timer;
-        Vector3 _launchDirection;
         PoolManager _poolManager;
 
         public override void Awake()
         {
-            _poolManager = new PoolManager(enemy, transform);
+            _poolManager = new PoolManager(enemy.gameObject, transform);
             base.Awake();
         }
-
-        void OnEnable() => PlayerMovement.PlayerChangedDirection += SetLaunchDirection;
-        void OnDisable() => PlayerMovement.PlayerChangedDirection -= SetLaunchDirection;
-        
-        void SetLaunchDirection(float speed)
-            => _launchDirection = speed < 0 ? LeftLaunchDirection : RightLaunchDirection;
-
-        static Vector3 LeftLaunchDirection => new Vector3(0, 0, Random.Range(0, -90));
-        static Vector3 RightLaunchDirection => new Vector3(0, 0, Random.Range(0, 90));
 
         void Update()
         {
@@ -37,13 +28,15 @@ namespace CasualFun.Games.AtCirclesEdge
             Spawn();
             _timer = 0f;
         }
-
+        
         bool CanSpawn => _timer >= spawnRate;
+        
+        void Spawn() => LaunchEnemy(_poolManager.TakeFromPool(Vector2.zero, player.transform.rotation));
 
-        void Spawn()
-        {
-            var poolObject = _poolManager.TakeFromPool(Vector2.zero, transform.rotation);
-            poolObject.transform.eulerAngles += _launchDirection;
-        }
+        void LaunchEnemy(GameObject enemyFromPool) => enemyFromPool.transform.eulerAngles += LaunchDirection;
+        
+        Vector3 LaunchDirection => player.Speed < 0 ? LeftLaunchDirection : RightLaunchDirection;
+        static Vector3 LeftLaunchDirection => new Vector3(0, 0, Random.Range(0, -90));
+        static Vector3 RightLaunchDirection => new Vector3(0, 0, Random.Range(0, 90));
     }
 }

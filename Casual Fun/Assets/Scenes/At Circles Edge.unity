@@ -1444,7 +1444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableAtStartup: 1
   spawnRate: 0.3
-  enemy: {fileID: 8377834460544938001, guid: 20dcabf0754b5b7449bba740158cb357, type: 3}
+  enemy: {fileID: 2706354494444556319, guid: 20dcabf0754b5b7449bba740158cb357, type: 3}
+  player: {fileID: 1017193338}
 --- !u!1 &726732726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,7 +2037,6 @@ GameObject:
   - component: {fileID: 1017193333}
   - component: {fileID: 1017193334}
   - component: {fileID: 1017193337}
-  - component: {fileID: 1017193336}
   - component: {fileID: 1017193338}
   - component: {fileID: 1017193339}
   m_Layer: 8
@@ -2139,21 +2139,6 @@ Transform:
   m_Father: {fileID: 128894386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1017193336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017193332}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06416cd95b07b704daeeb80db97293f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 3}
-  enemy: {fileID: 8377834460544938001, guid: 20dcabf0754b5b7449bba740158cb357, type: 3}
-  collectable: {fileID: 1093309101}
 --- !u!50 &1017193337
 Rigidbody2D:
   serializedVersion: 4
@@ -2182,14 +2167,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017193332}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34165ec4e3cc41a4ca2359047ebf3fde, type: 3}
+  m_Script: {fileID: 11500000, guid: 2098766337e537b4780d0304e39c2ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   disableAtStartup: 1
   speed: 100
-  objectToMove: {fileID: 128894386}
+  playerBase: {fileID: 128894386}
   playerSprite: {fileID: 1017193333}
 --- !u!114 &1017193339
 MonoBehaviour:
@@ -2198,13 +2183,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017193332}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e65e117032591004c8b35eba8e20c93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   disableAtStartup: 1
-  playerMovement: {fileID: 1017193338}
+  player: {fileID: 1017193338}
 --- !u!1 &1020435529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,6 +2237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d366d2691dad7478f4d71e77a05301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 96642853}
+  explosionPrefab: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 3}
+  collectedPrefab: {fileID: 5637270711585005900, guid: f25f843c982e8fd4a9ba01002672b706,
+    type: 3}
 --- !u!1 &1064676754
 GameObject:
   m_ObjectHideFlags: 0

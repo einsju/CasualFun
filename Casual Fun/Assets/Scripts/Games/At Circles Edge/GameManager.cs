@@ -5,21 +5,41 @@ namespace CasualFun.Games.AtCirclesEdge
 {
     public class GameManager : MonoBehaviour
     {
-        // [SerializeField] Player player;
-
+        public static GameManager Instance;
+        
+        [SerializeField] AudioPlayer audioPlayer;
+        [SerializeField] GameObject explosionPrefab;
+        [SerializeField] GameObject collectedPrefab;
+        
         void Awake()
         {
-            // GameStateEventHandler.GameStarted += GameStarted;
-            // GameStateEventHandler.GameOver += GameOver;
+            Instance = this;
+            GameStateEventHandler.GameStarted += GameStarted;
+            GameStateEventHandler.GameOver += GameOver;
         }
 
         void OnDestroy()
         {
-            // GameStateEventHandler.GameStarted -= GameStarted;
-            // GameStateEventHandler.GameOver -= GameOver;
+            GameStateEventHandler.GameStarted -= GameStarted;
+            GameStateEventHandler.GameOver -= GameOver;
         }
 
-        // void GameStarted() => player.Enable(true);
-        // void GameOver() => player.Reset();
+        static void GameStarted() => ResetTimeScale();
+        static void GameOver() => ResetTimeScale();
+
+        static void ResetTimeScale() => Time.timeScale = 1;
+
+        public void PlayerWasHitByEnemy(Transform playerTransform)
+        {
+            Instantiate(explosionPrefab, playerTransform.position, playerTransform.rotation);
+            audioPlayer.OnGameOver();
+            GameStateHandler.EndGame();
+        }
+
+        public void PlayerPickedUpCollectable(Vector3 position)
+        {
+            Instantiate(collectedPrefab, position, Quaternion.identity);
+            audioPlayer.OnItemCollected();
+        }
     }
 }

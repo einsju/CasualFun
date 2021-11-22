@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CasualFun.Utilities;
+using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
@@ -12,5 +13,13 @@ namespace CasualFun.Games.AtCirclesEdge
         void Update() => Move();
         
         void Move() => _transform.position += _transform.up * Speed;
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!HasCollidedWithPlayer(other.tag)) return;
+            GameManager.Instance.PlayerWasHitByEnemy(other.transform);
+        }
+
+        static bool HasCollidedWithPlayer(string tagName) => tagName == TagNames.Player;
     }
 }

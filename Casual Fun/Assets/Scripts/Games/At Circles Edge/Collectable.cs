@@ -1,3 +1,4 @@
+using CasualFun.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,17 +7,19 @@ namespace CasualFun.Games.AtCirclesEdge
     public class Collectable : MonoBehaviour
     {
         [SerializeField] Sprite[] collectableSprites;
-        [SerializeField] GameObject collectedEffect;
 
         SpriteRenderer _renderer;
 
         void Awake() => _renderer = GetComponent<SpriteRenderer>();
-
-        public void Collected()
+        
+        void OnTriggerEnter2D(Collider2D other)
         {
-            Instantiate(collectedEffect, _renderer.transform.position, Quaternion.identity);
+            if (!HasCollidedWithPlayer(other.tag)) return;
+            GameManager.Instance.PlayerPickedUpCollectable(_renderer.transform.position);
             Reposition();
         }
+
+        static bool HasCollidedWithPlayer(string tagName) => tagName == TagNames.Player;
         
         void Reposition()
         {
