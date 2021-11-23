@@ -6,8 +6,9 @@ namespace CasualFun.Games.AtCirclesEdge
     public class GameManager : MonoBehaviour
     {
         [SerializeField] AudioPlayer audioPlayer;
-        [SerializeField] GameObject explosionPrefab;
-        [SerializeField] GameObject collectedPrefab;
+        [SerializeField] Spawner spawner;
+        [SerializeField] int collectableEffectPoolIndex;
+        [SerializeField] int explosionEffectPoolIndex;
         
         void Awake()
         {
@@ -32,15 +33,21 @@ namespace CasualFun.Games.AtCirclesEdge
 
         void PlayerWasHitByEnemy(Transform playerTransform)
         {
-            Instantiate(explosionPrefab, playerTransform.position, playerTransform.rotation);
+            SpawnExplosionEffect(playerTransform);
             audioPlayer.OnGameOver();
             GameStateHandler.EndGame();
         }
 
+        void SpawnExplosionEffect(Transform playerTransform)
+            => spawner.Spawn(explosionEffectPoolIndex, playerTransform.position, playerTransform.rotation);
+
         void PlayerPickedUpCollectable(Vector3 position)
         {
-            Instantiate(collectedPrefab, position, Quaternion.identity);
+            SpawnPickUpEffect(position);
             audioPlayer.OnItemCollected();
         }
+
+        void SpawnPickUpEffect(Vector3 position)
+            => spawner.Spawn(collectableEffectPoolIndex, position, Quaternion.identity);
     }
 }

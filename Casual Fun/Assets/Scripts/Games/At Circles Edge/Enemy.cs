@@ -1,10 +1,9 @@
 ﻿using CasualFun.Handlers;
-using CasualFun.Utilities;
 using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, ICollidable
     {
         const float Speed = 0.15f;
         Transform _transform;
@@ -15,12 +14,6 @@ namespace CasualFun.Games.AtCirclesEdge
         
         void Move() => _transform.position += _transform.up * Speed;
 
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            if (!HasCollidedWithPlayer(other.tag)) return;
-            GameStateEventHandler.OnPlayerWasHitByEnemy(other.transform);
-        }
-
-        static bool HasCollidedWithPlayer(string tagName) => tagName == TagNames.Player;
+        public void Collide(GameObject other) => GameStateEventHandler.OnPlayerWasHitByEnemy(other.transform);
     }
 }

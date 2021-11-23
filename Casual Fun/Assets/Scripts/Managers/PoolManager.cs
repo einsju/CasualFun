@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CasualFun.Handlers;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -7,42 +8,59 @@ namespace CasualFun.Managers
 {
     public class PoolManager
     {
-        readonly GameObject _poolObject;
-        readonly Queue<GameObject> _poolObjects;
+        readonly Dictionary<Pool, Queue<GameObject>> _pools = new Dictionary<Pool, Queue<GameObject>>();
 
-        public PoolManager(GameObject poolObject, Transform parent, int size = 10)
+        PoolManager() => GameStateEventHandler.GameStarted += ResetPools;
+
+        public PoolManager(Pool toPool, Transform parent) : this()
+            => InitializePool(new List<Pool> { toPool }, parent);
+
+        public PoolManager(List<Pool> toPool, Transform parent) : this()
+            => InitializePool(toPool, parent);
+
+        void InitializePool(List<Pool> toPool, Transform parent)
         {
-            _poolObject = poolObject;
-            _poolObjects = new Queue<GameObject>(size);
+            toPool.ForEach(itp => _pools.Add(itp, new Queue<GameObject>(itp.size)));
+            CreatePool(parent);
+        }
+        
+        ~PoolManager() => GameStateEventHandler.GameStarted -= ResetPools;
+
+        void CreatePool(Transform parent)
+        {
+            foreach (var pool in _pools)
+                for (var i = 0; i < pool.Key.size; i++)
+                    pool.Value.Enqueue(Object.Instantiate(pool.Key.gameObject, parent, true));
+        }
+
+        public GameObject TakeFromPool(Pool pool, Vector3 position, Quaternion rotation)
+            => Take(pool, position, rotation);
+        
+        GameObject Take(Pool pool, Vector3 position, Quaternion rotation)
+        {
+            var correctPool = FindPool(pool);
+            var itemFromPool = correctPool.Value.Dequeue();
             
-            CreatePool(parent, size);
-            GameStateEventHandler.GameOver += ResetPool;
+            itemFromPool.transform.position = position;
+            itemFromPool.transform.rotation = rotation;
+            ActivatePoolMember(pool.shouldDeactivateMembersBeforeUse, itemFromPool);
+            correctPool.Value.Enqueue(itemFromPool);
+
+            return itemFromPool.gameObject;
+        }
+
+        static void ActivatePoolMember(bool shouldDeactivateFirst, GameObject poolMember)
+        {
+            if (shouldDeactivateFirst) poolMember.SetActive(false);
+            poolMember.SetActive(true);
         }
         
-        ~PoolManager() => GameStateEventHandler.GameOver -= ResetPool;
+        KeyValuePair<Pool, Queue<GameObject>> FindPool(Pool pool)
+            => _pools.First(pi => pi.Key == pool);
 
-        void CreatePool(Transform parent, int size)
+        void ResetPools()
         {
-            for (var i = 0; i < size; i++)
-                _poolObjects.Enqueue(Object.Instantiate(_poolObject, parent, true));
-        }
-
-        public GameObject TakeFromPool(Vector3 position, Quaternion rotation) => Take(position, rotation);
-        
-        GameObject Take(Vector3 position, Quaternion rotation)
-        {
-            var objectFromStack = _poolObjects.Dequeue();
-            objectFromStack.transform.position = position;
-            objectFromStack.transform.rotation = rotation;
-            objectFromStack.SetActive(true);
-            _poolObjects.Enqueue(objectFromStack);
-           
-            return objectFromStack;
-        }
-
-        void ResetPool()
-        {
-            foreach (var gameObject in _poolObjects)
+            foreach (var gameObject in _pools.SelectMany(pool => pool.Value))
                 gameObject.SetActive(false);
         }
     }

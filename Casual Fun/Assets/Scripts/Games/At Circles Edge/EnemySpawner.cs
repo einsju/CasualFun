@@ -7,7 +7,7 @@ namespace CasualFun.Games.AtCirclesEdge
     public class EnemySpawner : GameBehaviour
     {
         [SerializeField] float spawnRate = 0.3f;
-        [SerializeField] Enemy enemy;
+        [SerializeField] Pool enemy;
         [SerializeField] Player player;
 
         float _timer;
@@ -15,7 +15,7 @@ namespace CasualFun.Games.AtCirclesEdge
 
         public override void Awake()
         {
-            _poolManager = new PoolManager(enemy.gameObject, transform);
+            _poolManager = new PoolManager(enemy, transform);
             base.Awake();
         }
 
@@ -30,7 +30,7 @@ namespace CasualFun.Games.AtCirclesEdge
         
         bool CanSpawn => _timer >= spawnRate;
         
-        void Spawn() => LaunchEnemy(_poolManager.TakeFromPool(Vector2.zero, player.transform.rotation));
+        void Spawn() => LaunchEnemy(_poolManager.TakeFromPool(enemy, Vector2.zero, player.transform.rotation));
 
         void LaunchEnemy(GameObject enemyFromPool) => enemyFromPool.transform.eulerAngles += LaunchDirection;
         

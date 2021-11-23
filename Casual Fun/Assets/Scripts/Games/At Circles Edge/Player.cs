@@ -21,5 +21,18 @@ namespace CasualFun.Games.AtCirclesEdge
         }
 
         public float Speed => speed;
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            var (hasHit, collision) = HasHitSomethingOfInterest(other);
+            if (!hasHit) return;
+            collision.Collide(other.gameObject);
+        }
+
+        static (bool, ICollidable) HasHitSomethingOfInterest(Component other)
+        {
+            var collision = other.GetComponent<ICollidable>();
+            return collision is null ? (false, null) : (true, collision);
+        }
     }
 }

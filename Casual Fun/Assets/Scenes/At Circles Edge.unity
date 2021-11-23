@@ -830,6 +830,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275124650}
   m_CullTransparentMesh: 0
+--- !u!1 &346288899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346288900}
+  m_Layer: 0
+  m_Name: Pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346288900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346288899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 593566320}
+  - {fileID: 2061131755}
+  m_Father: {fileID: 1020435530}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &447213144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,12 +1455,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593566319}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1020435530}
-  m_RootOrder: 3
+  m_Father: {fileID: 346288900}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &593566321
 MonoBehaviour:
@@ -1444,7 +1476,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disableAtStartup: 1
   spawnRate: 0.3
-  enemy: {fileID: 2706354494444556319, guid: 20dcabf0754b5b7449bba740158cb357, type: 3}
+  enemy:
+    size: 10
+    gameObject: {fileID: 8377834460544938001, guid: 20dcabf0754b5b7449bba740158cb357,
+      type: 3}
+    shouldDeactivateMembersBeforeUse: 0
   player: {fileID: 1017193338}
 --- !u!1 &726732726
 GameObject:
@@ -2221,7 +2257,7 @@ Transform:
   - {fileID: 1442630533}
   - {fileID: 128894386}
   - {fileID: 676661121162127672}
-  - {fileID: 593566320}
+  - {fileID: 346288900}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2238,9 +2274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPlayer: {fileID: 96642853}
-  explosionPrefab: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 3}
-  collectedPrefab: {fileID: 5637270711585005900, guid: f25f843c982e8fd4a9ba01002672b706,
-    type: 3}
+  spawner: {fileID: 2061131756}
+  collectableEffectPoolIndex: 0
+  explosionEffectPoolIndex: 1
 --- !u!1 &1064676754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,6 +3640,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57888db2b05425049b889fe3928bc8f2, type: 3}
+--- !u!1 &2061131754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2061131755}
+  - component: {fileID: 2061131756}
+  m_Layer: 0
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2061131755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061131754}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 346288900}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2061131756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061131754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15dce12c6d96acb468afe93f63344320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - size: 3
+    gameObject: {fileID: 5637270711585005900, guid: f25f843c982e8fd4a9ba01002672b706,
+      type: 3}
+    shouldDeactivateMembersBeforeUse: 1
+  - size: 1
+    gameObject: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 3}
+    shouldDeactivateMembersBeforeUse: 0
 --- !u!1001 &2061965328
 PrefabInstance:
   m_ObjectHideFlags: 0
