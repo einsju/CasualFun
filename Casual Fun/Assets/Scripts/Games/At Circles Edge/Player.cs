@@ -1,8 +1,10 @@
+using CasualFun.Abstractions;
+using CasualFun.Handlers;
 using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class Player : GameBehaviour
+    public class Player : GameBehaviour, IKillable
     {
         [SerializeField] float speed = 100;
         [SerializeField] Transform playerBase;
@@ -22,17 +24,8 @@ namespace CasualFun.Games.AtCirclesEdge
 
         public float Speed => speed;
 
-        void OnTriggerEnter2D(Collider2D other)
-        {
-            var (hasHit, collision) = HasHitSomethingOfInterest(other);
-            if (!hasHit) return;
-            collision.Collide(other.gameObject);
-        }
+        void OnTriggerEnter2D(Collider2D other) => other.GetComponent<ICollectable>()?.Collect();
 
-        static (bool, ICollidable) HasHitSomethingOfInterest(Component other)
-        {
-            var collision = other.GetComponent<ICollidable>();
-            return collision is null ? (false, null) : (true, collision);
-        }
+        public void Kill() => GameStateEventHandler.OnPlayerWasHitByEnemy(transform);
     }
 }

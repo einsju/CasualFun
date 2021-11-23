@@ -1,10 +1,11 @@
+using CasualFun.Abstractions;
 using CasualFun.Handlers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class Collectable : MonoBehaviour, ICollidable
+    public class Collectable : MonoBehaviour, ICollectable
     {
         [SerializeField] Sprite[] collectableSprites;
 
@@ -12,7 +13,7 @@ namespace CasualFun.Games.AtCirclesEdge
 
         void Awake() => _renderer = GetComponent<SpriteRenderer>();
         
-        public void Collide(GameObject other)
+        public void Collect()
         {
             GameStateEventHandler.OnPlayerPickedUpCollectable(_renderer.transform.position);
             Reposition();
