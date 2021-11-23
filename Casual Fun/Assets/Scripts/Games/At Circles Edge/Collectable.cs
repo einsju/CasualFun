@@ -1,3 +1,4 @@
+using CasualFun.Handlers;
 using CasualFun.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,7 +16,7 @@ namespace CasualFun.Games.AtCirclesEdge
         void OnTriggerEnter2D(Collider2D other)
         {
             if (!HasCollidedWithPlayer(other.tag)) return;
-            GameManager.Instance.PlayerPickedUpCollectable(_renderer.transform.position);
+            GameStateEventHandler.OnPlayerPickedUpCollectable(_renderer.transform.position);
             Reposition();
         }
 

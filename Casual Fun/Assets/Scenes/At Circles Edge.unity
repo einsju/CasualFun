@@ -2156,9 +2156,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1017193338
 MonoBehaviour:
@@ -2315,8 +2315,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e5c82e113bd56ef4fab2c8624084220f, type: 3}
   - {fileID: 21300000, guid: ce2a697f8a92d084a8aa7e60c13877d1, type: 3}
   - {fileID: 21300000, guid: 066ef4ae00d4cd2429b2125a41c400b7, type: 3}
-  collectedEffect: {fileID: 5637270711585005900, guid: f25f843c982e8fd4a9ba01002672b706,
-    type: 3}
 --- !u!1 &1186891298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 78001310350491769, guid: 9e774fe604d9bb6439da14b11fee143a,

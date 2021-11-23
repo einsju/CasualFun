@@ -22,9 +22,8 @@ namespace CasualFun.Games.AtCirclesEdge
         void Update()
         {
             _timer += Time.deltaTime;
-            
+
             if (!CanSpawn) return;
-            
             Spawn();
             _timer = 0f;
         }
@@ -35,8 +34,8 @@ namespace CasualFun.Games.AtCirclesEdge
 
         void LaunchEnemy(GameObject enemyFromPool) => enemyFromPool.transform.eulerAngles += LaunchDirection;
         
-        Vector3 LaunchDirection => player.Speed < 0 ? LeftLaunchDirection : RightLaunchDirection;
-        static Vector3 LeftLaunchDirection => new Vector3(0, 0, Random.Range(0, -90));
-        static Vector3 RightLaunchDirection => new Vector3(0, 0, Random.Range(0, 90));
+        Vector3 LaunchDirection => player.Speed < 0 ? Left : Right;
+        static Vector3 Left => new Vector3(0, 0, Random.Range(0, -90));
+        static Vector3 Right => new Vector3(0, 0, Random.Range(0, 90));
     }
 }

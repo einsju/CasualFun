@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using CasualFun.Handlers;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -9,14 +8,12 @@ namespace CasualFun.Managers
     public class PoolManager
     {
         readonly GameObject _poolObject;
-        readonly Stack<GameObject> _availableObjects;
-        
-        IList<GameObject> _allObjects;
+        readonly Queue<GameObject> _poolObjects;
 
-        public PoolManager(GameObject poolObject, Transform parent, int size = 20)
+        public PoolManager(GameObject poolObject, Transform parent, int size = 10)
         {
             _poolObject = poolObject;
-            _availableObjects = new Stack<GameObject>(size);
+            _poolObjects = new Queue<GameObject>(size);
             
             CreatePool(parent, size);
             GameStateEventHandler.GameOver += ResetPool;
@@ -27,35 +24,26 @@ namespace CasualFun.Managers
         void CreatePool(Transform parent, int size)
         {
             for (var i = 0; i < size; i++)
-                _availableObjects.Push(Object.Instantiate(_poolObject, parent, true));
-            
-            _allObjects = _availableObjects.ToList();
+                _poolObjects.Enqueue(Object.Instantiate(_poolObject, parent, true));
         }
 
-        public GameObject TakeFromPool(Vector3 position, Quaternion rotation)
-            => Take(position, rotation);
+        public GameObject TakeFromPool(Vector3 position, Quaternion rotation) => Take(position, rotation);
         
         GameObject Take(Vector3 position, Quaternion rotation)
         {
-            var objectFromStack = _availableObjects.Pop();
+            var objectFromStack = _poolObjects.Dequeue();
             objectFromStack.transform.position = position;
             objectFromStack.transform.rotation = rotation;
             objectFromStack.SetActive(true);
+            _poolObjects.Enqueue(objectFromStack);
            
             return objectFromStack;
         }
 
-        void ReturnToPool(GameObject objectToRelease)
-        {
-            if (objectToRelease is null) return;
-            objectToRelease.SetActive(false);
-            _availableObjects.Push(objectToRelease);
-        }
-
         void ResetPool()
         {
-            foreach (var gameObject in _allObjects)
-                ReturnToPool(gameObject);
+            foreach (var gameObject in _poolObjects)
+                gameObject.SetActive(false);
         }
     }
 }
