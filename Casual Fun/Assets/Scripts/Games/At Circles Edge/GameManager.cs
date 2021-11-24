@@ -1,35 +1,29 @@
 ﻿using CasualFun.Handlers;
+using CasualFun.Managers;
 using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : GameManagerBase
     {
         [SerializeField] AudioPlayer audioPlayer;
         [SerializeField] Spawner spawner;
         [SerializeField] int collectableEffectPoolIndex;
         [SerializeField] int explosionEffectPoolIndex;
         
-        void Awake()
+        public override void Awake()
         {
-            GameStateEventHandler.GameStarted += GameStarted;
-            GameStateEventHandler.GameOver += GameOver;
+            base.Awake();
             GameStateEventHandler.PlayerPickedUpCollectable += PlayerPickedUpCollectable;
             GameStateEventHandler.PlayerWasHitByEnemy += PlayerWasHitByEnemy;
         }
 
-        void OnDestroy()
+        public override void OnDestroy()
         {
-            GameStateEventHandler.GameStarted -= GameStarted;
-            GameStateEventHandler.GameOver -= GameOver;
+            base.OnDestroy();
             GameStateEventHandler.PlayerPickedUpCollectable -= PlayerPickedUpCollectable;
             GameStateEventHandler.PlayerWasHitByEnemy -= PlayerWasHitByEnemy;
         }
-
-        static void GameStarted() => ResetTimeScale();
-        static void GameOver() => ResetTimeScale();
-
-        static void ResetTimeScale() => Time.timeScale = 1;
 
         void PlayerWasHitByEnemy(Transform playerTransform)
         {
@@ -43,6 +37,7 @@ namespace CasualFun.Games.AtCirclesEdge
 
         void PlayerPickedUpCollectable(Vector3 position)
         {
+            scoreManager.AddScore(1);
             SpawnPickUpEffect(position);
             audioPlayer.OnItemCollected();
         }

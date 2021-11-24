@@ -8,6 +8,6 @@ namespace CasualFun
     {
         public int size = 10;
         public GameObject gameObject;
-        public bool shouldDeactivateMembersBeforeUse = false;
+        public bool shouldDeactivateMembersBeforeUse;
     }
 }

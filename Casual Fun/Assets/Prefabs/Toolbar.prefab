@@ -5576,6 +5576,8 @@ GameObject:
   - component: {fileID: 4991450331587082212}
   - component: {fileID: 4991450331587082214}
   - component: {fileID: 4991450331587082213}
+  - component: {fileID: 5277362772596162064}
+  - component: {fileID: 6197276550786295268}
   m_Layer: 5
   m_Name: Toolbar
   m_TagString: Untagged
@@ -5642,6 +5644,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5277362772596162064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991450331587082219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40dda0aef2097dd44b59c9f588f37903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreText: {fileID: 5693175096303610456}
+  coinsText: {fileID: 4991450331065125637}
+--- !u!114 &6197276550786295268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991450331587082219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c2d5fe6360b1b4db654475ee4541d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4991450331638494178
 GameObject:
   m_ObjectHideFlags: 0

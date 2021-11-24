@@ -1599,6 +1599,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4991450331065125637, guid: 6f67cdef0e309bb499baddb20e9890fd,
+        type: 3}
+      propertyPath: m_text
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4991450331065125642, guid: 6f67cdef0e309bb499baddb20e9890fd,
         type: 3}
       propertyPath: m_Layer
@@ -2236,6 +2241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020435530}
   - component: {fileID: 1020435531}
+  - component: {fileID: 1020435532}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -2273,10 +2279,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d366d2691dad7478f4d71e77a05301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 1020435532}
   audioPlayer: {fileID: 96642853}
   spawner: {fileID: 2061131756}
   collectableEffectPoolIndex: 0
   explosionEffectPoolIndex: 1
+--- !u!114 &1020435532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020435529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ea79aeb894bd2459874ba7658ea4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1005761956}
 --- !u!1 &1064676754
 GameObject:
   m_ObjectHideFlags: 0
