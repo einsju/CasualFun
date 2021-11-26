@@ -4,10 +4,16 @@ namespace CasualFun.Storage
     {
         readonly IPlayerDataHandler _handler;
 
-        public PlayerDataService(IPlayerDataHandler handler) => _handler = handler;
+        public PlayerDataService(IPlayerDataHandler handler)
+        {
+            _handler = handler;
+            PlayerData.PlayerDataUpdated += SavePlayerData;
+        }
+
+        ~PlayerDataService() => PlayerData.PlayerDataUpdated -= SavePlayerData;
 
         public PlayerData GetPlayerData() => _handler.Load();
 
-        public void SavePlayerData(PlayerData data) => _handler.Save(data);
+        void SavePlayerData(PlayerData data) => _handler.Save(data);
     }
 }

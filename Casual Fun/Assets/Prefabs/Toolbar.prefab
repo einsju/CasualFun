@@ -5656,6 +5656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40dda0aef2097dd44b59c9f588f37903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: {fileID: 4991450330332781486}
   highScoreText: {fileID: 5693175096303610456}
   coinsText: {fileID: 4991450331065125637}
 --- !u!114 &6197276550786295268

@@ -23,7 +23,6 @@ namespace CasualFun.Managers
             ShowScore();
         }
 
-
         void ShowScore() => scoreText.text = $"{_score}";
     }
 }
