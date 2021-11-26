@@ -1,9 +1,9 @@
-using CasualFun.Handlers;
+using CasualFun.Audio;
 using CasualFun.Storage;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CasualFun
+namespace CasualFun.Screens
 {
     public class Options : MonoBehaviour
     {

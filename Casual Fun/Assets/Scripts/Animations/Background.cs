@@ -1,4 +1,3 @@
-using CasualFun.Managers;
 using UnityEngine;
 
 namespace CasualFun.Animations

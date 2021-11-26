@@ -1,8 +1,7 @@
-using CasualFun.Storage;
 using TMPro;
 using UnityEngine;
 
-namespace CasualFun.Managers
+namespace CasualFun.Player
 {
     public class PlayerDataManager : MonoBehaviour
     {

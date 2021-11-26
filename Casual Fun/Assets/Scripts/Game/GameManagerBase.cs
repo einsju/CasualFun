@@ -1,7 +1,7 @@
-using CasualFun.Handlers;
+using CasualFun.State;
 using UnityEngine;
 
-namespace CasualFun.Managers
+namespace CasualFun.Game
 {
     public abstract class GameManagerBase : MonoBehaviour
     {

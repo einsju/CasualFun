@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.Pooling
 {
     [Serializable]
     public class Pool

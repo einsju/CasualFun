@@ -1,4 +1,4 @@
-namespace CasualFun.Storage
+namespace CasualFun.Player
 {
     public class PlayerDataService
     {

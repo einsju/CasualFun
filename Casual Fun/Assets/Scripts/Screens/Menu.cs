@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using CasualFun.Managers;
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.Screens
 {
     public class Menu : MonoBehaviour
     {

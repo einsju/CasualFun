@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace CasualFun.Managers
+namespace CasualFun.Game
 {
     public class ScoreManager : MonoBehaviour
     {

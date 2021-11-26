@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CasualFun.Handlers
+namespace CasualFun.State
 {
     public abstract class GameStateEventHandler
     {

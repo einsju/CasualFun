@@ -1,6 +1,6 @@
 using System;
 
-namespace CasualFun.Managers
+namespace CasualFun
 {
     public abstract class EventManager
     {

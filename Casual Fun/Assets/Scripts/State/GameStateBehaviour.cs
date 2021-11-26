@@ -1,9 +1,8 @@
-using CasualFun.Handlers;
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.State
 {
-    public class GameBehaviour : MonoBehaviour
+    public class GameStateBehaviour : MonoBehaviour
     {
         [SerializeField] bool disableAtStartup = true;
         

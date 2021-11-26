@@ -1,10 +1,11 @@
-using CasualFun.Managers;
+using CasualFun.Pooling;
+using CasualFun.State;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class EnemySpawner : GameBehaviour
+    public class EnemySpawner : GameStateBehaviour
     {
         [SerializeField] float spawnRate = 0.3f;
         [SerializeField] Pool enemy;

@@ -1,9 +1,7 @@
-using CasualFun.Handlers;
 using CasualFun.Storage;
-using CasualFun.Utilities;
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour

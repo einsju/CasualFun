@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace CasualFun.Utilities
+namespace CasualFun.Audio
 {
     public abstract class MusicThemeCoordinator
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using CasualFun.Handlers;
+using CasualFun.State;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace CasualFun.Managers
+namespace CasualFun.Pooling
 {
     public class PoolManager
     {

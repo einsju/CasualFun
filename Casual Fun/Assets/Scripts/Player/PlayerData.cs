@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CasualFun.Storage
+namespace CasualFun.Player
 {
     [Serializable]
     public class PlayerData

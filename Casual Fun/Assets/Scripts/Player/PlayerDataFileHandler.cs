@@ -2,7 +2,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace CasualFun.Storage
+namespace CasualFun.Player
 {
     public class PlayerDataFileHandler : MonoBehaviour, IPlayerDataHandler
     {

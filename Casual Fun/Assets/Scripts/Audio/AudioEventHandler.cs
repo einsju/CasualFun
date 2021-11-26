@@ -1,6 +1,6 @@
 using System;
 
-namespace CasualFun.Handlers
+namespace CasualFun.Audio
 {
     public abstract class AudioEventHandler
     {

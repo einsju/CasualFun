@@ -1,8 +1,8 @@
-using CasualFun;
 using CasualFun.Games.AtCirclesEdge;
+using CasualFun.State;
 using UnityEngine;
 
-public class PlayerInput : GameBehaviour
+public class PlayerInput : GameStateBehaviour
 {
     [SerializeField] Player player;
 

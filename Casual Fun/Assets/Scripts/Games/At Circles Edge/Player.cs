@@ -1,10 +1,10 @@
 using CasualFun.Abstractions;
-using CasualFun.Handlers;
+using CasualFun.State;
 using UnityEngine;
 
 namespace CasualFun.Games.AtCirclesEdge
 {
-    public class Player : GameBehaviour, IKillable
+    public class Player : GameStateBehaviour, IKillable
     {
         [SerializeField] float speed = 100;
         [SerializeField] Transform playerBase;

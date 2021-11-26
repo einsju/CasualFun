@@ -1,8 +1,7 @@
 using System.Linq;
-using CasualFun.Managers;
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.Pooling
 {
     public class Spawner : MonoBehaviour
     {

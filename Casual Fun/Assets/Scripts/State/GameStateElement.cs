@@ -1,7 +1,6 @@
-using CasualFun.Handlers;
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.State
 {
     public class GameStateElement : MonoBehaviour
     {
