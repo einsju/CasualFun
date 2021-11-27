@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 676661120258129490}
   - component: {fileID: 676661120258129493}
   - component: {fileID: 676661120269697311}
+  - component: {fileID: 8459144663495280520}
   m_Layer: 10
   m_Name: Point
   m_TagString: Point
@@ -78,6 +79,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -102,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: c007a6abddfee494fb26ac752e189dfa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c65af093b5e10542b574bbc40c570d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +132,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.535157, y: 14.566667}
+    oldSize: {x: 10.24, y: 10.24}
     newSize: {x: 0.72, y: 0.42}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -139,3 +141,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34140626, y: 0.58266664}
   m_EdgeRadius: 0
+--- !u!114 &8459144663495280520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676661120258129491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5f040b3ea18b642b017d1e9e2412e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

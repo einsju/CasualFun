@@ -1,3 +1,4 @@
+using CasualFun.Player;
 using CasualFun.State;
 using UnityEngine;
 
@@ -21,12 +22,16 @@ namespace CasualFun.Game
 
         void GameStarted()
         {
-            scoreManager.ResetScore();
             ResetTimeScale();
+            scoreManager.ResetScore();
         }
 
-        static void GameOver() => ResetTimeScale();
-        
+        void GameOver()
+        {
+            ResetTimeScale();
+            PlayerDataManager.PlayerData.SetHighScore(PlayerDataManager.HighScoreKey, scoreManager.Score);
+        }
+
         static void ResetTimeScale() => Time.timeScale = 1;
     }
 }

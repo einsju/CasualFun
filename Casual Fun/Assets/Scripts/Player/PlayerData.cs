@@ -7,7 +7,10 @@ namespace CasualFun.Player
     [Serializable]
     public class PlayerData
     {
+        public const string DefaultPlayerName = "Guest";
+        
         public static event Action<PlayerData> PlayerDataUpdated;
+        public static event Action<int> NewHighScoreAchieved;
         
         public string Name { get; private set; }
         public int Coins { get; private set; }
@@ -15,7 +18,7 @@ namespace CasualFun.Player
 
         public int TotalHighScore => GamesHighScores.Sum(gh => gh.Value);
 
-        public PlayerData(string name = "Guest", int coins = 1000)
+        public PlayerData(string name = DefaultPlayerName, int coins = 1000)
         {
             Name = name;
             Coins = coins;
@@ -24,12 +27,15 @@ namespace CasualFun.Player
 
         public void SetName(string name)
         {
+            if (name == Name) return;
+            if (string.IsNullOrEmpty(name)) name = DefaultPlayerName;
             Name = name;
             NotifyPlayerDataHasUpdated();
         }
 
         public void AddCoins(int coins)
         {
+            if (coins < 0) return;
             Coins += coins;
             NotifyPlayerDataHasUpdated();
         }
@@ -41,12 +47,13 @@ namespace CasualFun.Player
         {
             if (!ShouldSaveHighScore(key, score)) return;
             GamesHighScores[key] = score;
+            NewHighScoreAchieved?.Invoke(score);
             NotifyPlayerDataHasUpdated();
         }
         
-        bool ShouldSaveHighScore(int gameIndex, int score)
-            => GamesHighScores.ContainsKey(gameIndex) && score > GamesHighScores[gameIndex];
-
+        bool ShouldSaveHighScore(int key, int score)
+            => !GamesHighScores.ContainsKey(key) || score > GamesHighScores[key];
+        
         void NotifyPlayerDataHasUpdated() => PlayerDataUpdated?.Invoke(this);
     }
 }
