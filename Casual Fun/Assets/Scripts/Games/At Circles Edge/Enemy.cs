@@ -5,7 +5,7 @@ namespace CasualFun.Games.AtCirclesEdge
 {
     public class Enemy : MonoBehaviour
     {
-        const float Speed = 0.15f;
+        const float Speed = 0.25f;
         Transform _transform;
 
         void Awake() => _transform = transform;
