@@ -31,11 +31,14 @@ public class Coin : MonoBehaviour, ICollectable
 
     public void Collect()
     {
+        if (!CanCollect) return;
         GameStateEventHandler.OnPlayerPickedUpCoin(_renderer.transform.position);
         _renderer.enabled = false;
         Reposition();
         HandleCoinVisibility();
     }
+
+    bool CanCollect => _renderer.isVisible;
          
     void Reposition() => transform.parent.eulerAngles = RandomPointInCircle;
 

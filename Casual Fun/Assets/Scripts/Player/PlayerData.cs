@@ -52,7 +52,7 @@ namespace CasualFun.Player
         }
         
         bool ShouldSaveHighScore(int key, int score)
-            => !GamesHighScores.ContainsKey(key) || score > GamesHighScores[key];
+            => score > 0 && (!GamesHighScores.ContainsKey(key) || score > GamesHighScores[key]);
         
         void NotifyPlayerDataHasUpdated() => PlayerDataUpdated?.Invoke(this);
     }

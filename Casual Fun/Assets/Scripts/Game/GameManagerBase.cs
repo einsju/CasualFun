@@ -30,6 +30,7 @@ namespace CasualFun.Game
         {
             ResetTimeScale();
             PlayerDataManager.PlayerData.SetHighScore(PlayerDataManager.HighScoreKey, scoreManager.Score);
+            PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
         }
 
         static void ResetTimeScale() => Time.timeScale = 1;

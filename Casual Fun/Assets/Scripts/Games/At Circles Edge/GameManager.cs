@@ -60,7 +60,7 @@ namespace CasualFun.Games.AtCirclesEdge
         {
             // TODO
             // Notify player visually about the new high score
-            Debug.Log("Player got new high score. Yay!!!");
+            // Debug.Log("Player got new high score. Yay!!!");
         }
     }
 }

@@ -7,6 +7,8 @@ namespace CasualFun.Games.AtCirclesEdge
 {
     public class ScorePoint : MonoBehaviour, ICollectable
     {
+        [SerializeField] float increaseTweenFactor = 0.01f;
+        
         SpriteRenderer _renderer;
 
         void Awake() => _renderer = GetComponent<SpriteRenderer>();
@@ -18,7 +20,7 @@ namespace CasualFun.Games.AtCirclesEdge
             var localScale = transform.localScale;
             
             LeanTween.scale(gameObject,
-                    new Vector3(localScale.x - 0.005f, localScale.y - 0.005f, localScale.z),
+                    new Vector3(localScale.x + increaseTweenFactor, localScale.y + increaseTweenFactor, localScale.z),
                     0.3f)
                 .setLoopPingPong();
         }

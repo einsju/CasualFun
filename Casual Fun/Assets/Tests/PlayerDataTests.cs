@@ -1,10 +1,9 @@
 using CasualFun.Player;
 using NUnit.Framework;
-using UnityEngine;
 
 namespace CasualFun
 {
-    public class PlayerDataTests : MonoBehaviour
+    public class PlayerDataTests
     {
         [Test]
         public void ShouldInitializeGamesHighScores_WhenConstructed()

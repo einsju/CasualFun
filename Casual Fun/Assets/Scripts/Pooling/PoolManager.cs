@@ -61,7 +61,7 @@ namespace CasualFun.Pooling
         void ResetPools()
         {
             foreach (var gameObject in _pools.SelectMany(pool => pool.Value))
-                gameObject.SetActive(false);
+                if (gameObject != null) gameObject.SetActive(false);
         }
     }
 }
