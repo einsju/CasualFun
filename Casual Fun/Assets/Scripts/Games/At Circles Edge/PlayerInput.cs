@@ -1,14 +1,16 @@
-using CasualFun.Games.AtCirclesEdge;
 using CasualFun.State;
 using UnityEngine;
 
-public class PlayerInput : GameStateBehaviour
+namespace CasualFun.Games.AtCirclesEdge
 {
-    [SerializeField] Player player;
-
-    void Update()
+    public class PlayerInput : GameStateBehaviour
     {
-        if (!Input.GetButtonDown("Fire1")) return;
-        player.ChangeDirection();
+        [SerializeField] Player player;
+
+        void Update()
+        {
+            if (!Input.GetButtonDown("Fire1")) return;
+            player.ChangeDirection();
+        }
     }
 }

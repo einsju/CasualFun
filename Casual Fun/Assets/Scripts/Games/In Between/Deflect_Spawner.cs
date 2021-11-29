@@ -33,8 +33,7 @@ namespace CasualFun.Games.InBetween
             spawnCoinAfter = 5,
             spawncoinOffset;
 
-        GameManager
-            gameManager;
+        [SerializeField] GameManager gameManager;
 
         public static Deflect_Spawner inst;
 
@@ -53,7 +52,6 @@ namespace CasualFun.Games.InBetween
 
         void Start()
         {
-            gameManager = GameManager.Inst;
             Setup();
         }
 
@@ -99,7 +97,7 @@ namespace CasualFun.Games.InBetween
 
         public void EnableCoins()
         {
-            gameManager.AddCoins();
+            //gameManager.AddCoins();
             spawnCoinCache = GetRandom();
             spawnCoin = true;
         }

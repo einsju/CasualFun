@@ -1,85 +1,66 @@
-﻿using CasualFun.State;
-using TMPro;
+﻿using CasualFun.Audio;
+using CasualFun.Game;
+using CasualFun.Player;
+using CasualFun.Pooling;
+using CasualFun.State;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace CasualFun.Games.InBetween
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : GameManagerBase
     {
-        [Header("Settings")] public int coinsToEarn = 10;
-        [FormerlySerializedAs("CamOffset")] public float camOffset = 11;
-        [HideInInspector] public int coins;
-        //[Header("References")] public ScoreManager ScoreManager;
-        //[SerializeField] Player player;
-
-        // readonly Store _store;
-
-        public static GameManager Inst;
-
-        // public GameManager(Store store) => _store = store;
-
-        // float GetBounds()
-        // {
-        //     var bounds = player.GetComponent<SpriteRenderer>();
-        //     return bounds.bounds.size.x * Screen.height / Screen.width * camOffset;
-        // }
-
-        void Awake() => Inst = this;
-
-        void Start() => Initialize();
-
-        void Initialize()
+        [SerializeField] AudioPlayer audioPlayer;
+        [SerializeField] Spawner spawner;
+        [SerializeField] int collectableEffectPoolIndex;
+        [SerializeField] int explosionEffectPoolIndex = 1;
+        
+        public override void Awake()
         {
-            //setup score
-            var scoreObject = GameObject.FindGameObjectWithTag("ScoreText");
-            var scoreText = scoreObject.GetComponent<TextMeshProUGUI>();
-            var gameName = SceneManager.GetActiveScene().name;
-            //ScoreManager = new ScoreManager(scoreText, gameName);
-            // if (_store.player == null)
-            // {
-            //     _store.player = _player.GetComponent<SpriteRenderer>();
-            // }
-
-            //ScoreManager.LoadSaveGameScore();
-            CamSetup();
+            base.Awake();
+            GameStateEventHandler.PlayerPickedUpCollectable += PlayerPickedUpCollectable;
+            GameStateEventHandler.PlayerPickedUpCoin += PlayerPickedUpCoin;
+            GameStateEventHandler.PlayerWasHitByEnemy += PlayerWasHitByEnemy;
+            PlayerData.NewHighScoreAchieved += NewHighScoreAchieved;
         }
 
-        void CamSetup()
+        public override void OnDestroy()
         {
-            // if (Camera.main is { }) Camera.main.orthographicSize = GetBounds();
+            base.OnDestroy();
+            GameStateEventHandler.PlayerPickedUpCollectable -= PlayerPickedUpCollectable;
+            GameStateEventHandler.PlayerPickedUpCoin -= PlayerPickedUpCoin;
+            GameStateEventHandler.PlayerWasHitByEnemy -= PlayerWasHitByEnemy;
+            PlayerData.NewHighScoreAchieved -= NewHighScoreAchieved;
         }
 
-        public void BeginPlay()
+        void PlayerWasHitByEnemy(Transform playerTransform)
         {
-            // player.Enable(true);
-            GameStateEventHandler.OnGameStarted();
+            SpawnEffect(explosionEffectPoolIndex, playerTransform.position, playerTransform.rotation);
+            audioPlayer.OnGameOver();
+            GameStateHandler.EndGame();
+        }
+
+        void PlayerPickedUpCollectable(Vector3 position)
+        {
+            scoreManager.AddScore(1);
+            SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);
+            audioPlayer.OnItemCollected();
         }
         
-        public void ResetGame()
+        void PlayerPickedUpCoin(Vector3 position)
         {
-            ResetValues();
-            //Time.timeScale = 1;
-        }
-
-        void ResetValues()
-        {
-            //ScoreManager.CurrentPoints = 0;
-            coins = 0;
-            // player.Reset();
-            // _store.RandomizePlayer();
+            PlayerDataManager.PlayerData.AddCoins(1);
+            SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);
+            audioPlayer.OnItemCollected();
         }
         
-        public void Lose()
+        void SpawnEffect(int poolIndex, Vector3 position, Quaternion rotation)
+            => spawner.Spawn(poolIndex, position, rotation);
+
+        static void NewHighScoreAchieved(int highScore)
         {
-            GameStateEventHandler.OnGameOver();
-            ResetValues();
-            // _store.SaveCoins(coins);
+            // TODO
+            // Notify player visually about the new high score
+            // Debug.Log("Player got new high score. Yay!!!");
         }
-
-        public void AddCoins() => coins += coinsToEarn;
-
-        public void ChangeScene(string scene) => SceneManager.LoadScene(scene);
     }
 }

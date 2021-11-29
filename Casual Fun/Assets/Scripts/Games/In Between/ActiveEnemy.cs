@@ -10,11 +10,9 @@ namespace CasualFun.Games.InBetween
         void Update()
         {
             obj.color = Color.Lerp(obj.color, Color.white, Time.deltaTime * t);
-            if (obj.color.a >= 0.95f)
-            {
-                this.gameObject.layer = 8;
-                Destroy(this);
-            }
+            if (!(obj.color.a >= 0.95f)) return;
+            gameObject.layer = 8;
+            Destroy(this);
         }
     }
 }

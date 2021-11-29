@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/At Circles Edge.unity
     guid: 62cc19291d39de3408ea5d58028867c3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/In Between.unity
-    guid: 594af2b91cb4a7b4180217bb4b60a7eb
+    guid: 8ff5c3445d3fdf743aef39c93fcb54b3
   m_configObjects: {}
