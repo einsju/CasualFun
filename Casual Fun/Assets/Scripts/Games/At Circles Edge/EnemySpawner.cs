@@ -1,3 +1,4 @@
+using CasualFun.Audio;
 using CasualFun.Pooling;
 using CasualFun.State;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace CasualFun.Games.AtCirclesEdge
         [SerializeField] float spawnRate = 0.3f;
         [SerializeField] Pool enemy;
         [SerializeField] Player player;
+        [SerializeField] AudioPlayer audioPlayer;
 
         float _timer;
         PoolManager _poolManager;
@@ -33,8 +35,12 @@ namespace CasualFun.Games.AtCirclesEdge
         
         void Spawn() => LaunchEnemy(_poolManager.TakeFromPool(enemy, Vector2.zero, player.transform.rotation));
 
-        void LaunchEnemy(GameObject enemyFromPool) => enemyFromPool.transform.eulerAngles += LaunchDirection;
-        
+        void LaunchEnemy(GameObject enemyFromPool)
+        {
+            audioPlayer.OnEnemySpawned();
+            enemyFromPool.transform.eulerAngles += LaunchDirection;
+        }
+
         Vector3 LaunchDirection => player.Speed < 0 ? Left : Right;
         static Vector3 Left => new Vector3(0, 0, Random.Range(0, -90));
         static Vector3 Right => new Vector3(0, 0, Random.Range(0, 90));

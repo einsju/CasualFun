@@ -5,7 +5,7 @@ namespace CasualFun.Games.AtCirclesEdge
 {
     public class Enemy : MonoBehaviour
     {
-        const float Speed = 0.25f;
+        const float Speed = 0.2f;
         Transform _transform;
 
         void Awake() => _transform = transform;
@@ -14,6 +14,10 @@ namespace CasualFun.Games.AtCirclesEdge
         
         void Move() => _transform.position += _transform.up * Speed;
         
-        void OnTriggerEnter2D(Collider2D other) => other.GetComponent<IKillable>()?.Kill();
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            other.GetComponent<IKillable>()?.Kill();
+            gameObject.SetActive(false);
+        }
     }
 }

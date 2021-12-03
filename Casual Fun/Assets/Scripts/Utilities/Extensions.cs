@@ -1,4 +1,7 @@
+using System.Globalization;
+
 public static class Extensions
 {
-    public static string WithThousandSeparator(this int value) => value.ToString("N0");
+    public static string WithThousandSeparator(this int value) => value.ToString("#,##0", EnglishCulture);
+    static CultureInfo EnglishCulture => CultureInfo.GetCultureInfo("en-US");
 }

@@ -8,9 +8,22 @@ namespace CasualFun.Games.AtCirclesEdge
     {
         [SerializeField] float speed = 100;
         [SerializeField] Transform playerBase;
-        [SerializeField] SpriteRenderer playerSprite;
 
-        void OnEnable() => ResetRotation(playerBase);
+        SpriteRenderer _spriteRenderer;
+        Collider2D _collider;
+
+        public override void Awake()
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _collider = GetComponent<Collider2D>();
+            base.Awake();
+        }
+
+        void OnEnable()
+        {
+            ResetRotation(playerBase);
+            _spriteRenderer.enabled = _collider.enabled = true;
+        }
 
         void Update() => Move();
         
@@ -19,13 +32,17 @@ namespace CasualFun.Games.AtCirclesEdge
         public void ChangeDirection()
         {
             speed *= -1;
-            playerSprite.flipX = speed < 0;
+            _spriteRenderer.flipX = speed < 0;
         }
 
         public float Speed => speed;
 
         void OnTriggerEnter2D(Collider2D other) => other.GetComponent<ICollectable>()?.Collect();
 
-        public void Kill() => GameStateEventHandler.OnPlayerWasHitByEnemy(transform);
+        public void Kill()
+        {
+            _spriteRenderer.enabled = _collider.enabled = false;
+            GameStateEventHandler.OnPlayerWasHitByEnemy(transform);
+        }
     }
 }

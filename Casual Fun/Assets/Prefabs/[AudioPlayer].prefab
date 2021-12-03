@@ -143,4 +143,5 @@ MonoBehaviour:
   button: {fileID: 8300000, guid: 5dcfaf5ffa448e6469a87fce64f156b3, type: 3}
   screenTransition: {fileID: 8300000, guid: 3a9bd2327cd76f242af9117d1dc5ffeb, type: 3}
   itemCollected: {fileID: 8300000, guid: 95f6d96bd1afd1942a5f585932217773, type: 3}
+  enemySpawned: {fileID: 8300000, guid: 9ad0bf29e95214440a2a873b2f5a5375, type: 3}
   gameOver: {fileID: 8300000, guid: 00689cbe67006164ba14ae56728dac84, type: 3}

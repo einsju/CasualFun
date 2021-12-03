@@ -9,6 +9,7 @@ namespace CasualFun.Audio
         [SerializeField] AudioClip button;
         [SerializeField] AudioClip screenTransition;
         [SerializeField] AudioClip itemCollected;
+        [SerializeField] AudioClip enemySpawned;
         [SerializeField] AudioClip gameOver;
         
         AudioSource _audioSource;
@@ -24,28 +25,20 @@ namespace CasualFun.Audio
         
         void OnDisable() => AudioEventHandler.SoundOptionChanged -= SoundOptionChanged;
 
-        public void OnButtonClick()
-        {
-            if (!_hasAudio) return;
-            _audioSource.PlayOneShot(button);
-        }
+        public void OnButtonClick() => PlayClip(button);
         
-        public void OnScreenTransition()
-        {
-            if (!_hasAudio) return;
-            _audioSource.PlayOneShot(screenTransition);
-        }
+        public void OnScreenTransition() => PlayClip(screenTransition);
 
-        public void OnItemCollected()
-        {
-            if (!_hasAudio) return;
-            _audioSource.PlayOneShot(itemCollected);
-        }
+        public void OnItemCollected() => PlayClip(itemCollected);
+        
+        public void OnEnemySpawned() => PlayClip(enemySpawned);
 
-        public void OnGameOver()
+        public void OnGameOver() => PlayClip(gameOver);
+
+        void PlayClip(AudioClip clip)
         {
             if (!_hasAudio) return;
-            _audioSource.PlayOneShot(gameOver);
+            _audioSource.PlayOneShot(clip);
         }
 
         void SoundOptionChanged(bool value) => _hasAudio = value;
