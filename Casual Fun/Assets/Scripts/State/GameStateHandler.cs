@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CasualFun.State
+namespace CasualFun.AtCirclesEdge.State
 {
     public class GameStateHandler : MonoBehaviour
     {

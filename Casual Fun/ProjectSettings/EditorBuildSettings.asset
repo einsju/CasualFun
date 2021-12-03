@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Home.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/At Circles Edge.unity
+    path: Assets/Scenes/Game.unity
     guid: 62cc19291d39de3408ea5d58028867c3
   m_configObjects: {}

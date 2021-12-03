@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CasualFun
+namespace CasualFun.AtCirclesEdge
 {
     public class SceneLoader : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-using CasualFun.Abstractions;
-using CasualFun.State;
+using CasualFun.AtCirclesEdge.Abstractions;
+using CasualFun.AtCirclesEdge.State;
 using UnityEngine;
 
-namespace CasualFun.Games.AtCirclesEdge
+namespace CasualFun.AtCirclesEdge.Game
 {
     public class Player : GameStateBehaviour, IKillable
     {
@@ -42,7 +42,7 @@ namespace CasualFun.Games.AtCirclesEdge
         public void Kill()
         {
             _spriteRenderer.enabled = _collider.enabled = false;
-            GameStateEventHandler.OnPlayerWasHitByEnemy(transform);
+            GameManager.Instance.PlayerWasHitByEnemy(transform);
         }
     }
 }

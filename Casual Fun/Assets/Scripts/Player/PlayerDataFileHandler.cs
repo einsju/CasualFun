@@ -2,7 +2,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace CasualFun.Player
+namespace CasualFun.AtCirclesEdge.Player
 {
     public class PlayerDataFileHandler : MonoBehaviour, IPlayerDataHandler
     {

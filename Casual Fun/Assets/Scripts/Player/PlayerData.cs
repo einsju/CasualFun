@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CasualFun.Player
+namespace CasualFun.AtCirclesEdge.Player
 {
     [Serializable]
     public class PlayerData

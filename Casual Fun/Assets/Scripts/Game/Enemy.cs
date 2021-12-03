@@ -1,7 +1,7 @@
-﻿using CasualFun.Abstractions;
+﻿using CasualFun.AtCirclesEdge.Abstractions;
 using UnityEngine;
 
-namespace CasualFun.Games.AtCirclesEdge
+namespace CasualFun.AtCirclesEdge.Game
 {
     public class Enemy : MonoBehaviour
     {

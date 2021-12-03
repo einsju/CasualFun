@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CasualFun.Screens
+namespace CasualFun.AtCirclesEdge.Screens
 {
     public class Menu : MonoBehaviour
     {

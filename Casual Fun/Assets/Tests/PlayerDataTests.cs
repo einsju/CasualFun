@@ -1,4 +1,4 @@
-using CasualFun.Player;
+using CasualFun.AtCirclesEdge.Player;
 using NUnit.Framework;
 
 namespace CasualFun

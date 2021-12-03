@@ -1,9 +1,8 @@
-using CasualFun.Abstractions;
-using CasualFun.State;
+using CasualFun.AtCirclesEdge.Abstractions;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CasualFun.Games.AtCirclesEdge
+namespace CasualFun.AtCirclesEdge.Game
 {
     public class ScorePoint : MonoBehaviour, ICollectable
     {
@@ -27,7 +26,7 @@ namespace CasualFun.Games.AtCirclesEdge
 
         public void Collect()
         {
-            GameStateEventHandler.OnPlayerPickedUpCollectable(_renderer.transform.position);
+            GameManager.Instance.PlayerPickedUpCollectable(_renderer.transform.position);
             Reposition();
         }
         

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using CasualFun.State;
+using CasualFun.AtCirclesEdge.State;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace CasualFun.Pooling
+namespace CasualFun.AtCirclesEdge.Pooling
 {
     public class PoolManager
     {

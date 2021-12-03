@@ -1,4 +1,4 @@
-﻿namespace CasualFun.Abstractions
+﻿namespace CasualFun.AtCirclesEdge.Abstractions
 {
     public interface ICollectable
     {

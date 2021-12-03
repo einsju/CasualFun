@@ -1,10 +1,10 @@
-using CasualFun.Audio;
-using CasualFun.Pooling;
-using CasualFun.State;
+using CasualFun.AtCirclesEdge.Audio;
+using CasualFun.AtCirclesEdge.Pooling;
+using CasualFun.AtCirclesEdge.State;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CasualFun.Games.AtCirclesEdge
+namespace CasualFun.AtCirclesEdge.Game
 {
     public class EnemySpawner : GameStateBehaviour
     {

@@ -1,9 +1,9 @@
-using CasualFun.Audio;
-using CasualFun.Storage;
+using CasualFun.AtCirclesEdge.Audio;
+using CasualFun.AtCirclesEdge.Storage;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CasualFun.Screens
+namespace CasualFun.AtCirclesEdge.Screens
 {
     public class Options : MonoBehaviour
     {

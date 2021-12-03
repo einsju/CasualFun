@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CasualFun.Storage
+namespace CasualFun.AtCirclesEdge.Storage
 {
     public abstract class Preferences
     {

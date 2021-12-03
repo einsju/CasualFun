@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CasualFun.Pooling
+namespace CasualFun.AtCirclesEdge.Pooling
 {
     [Serializable]
     public class Pool

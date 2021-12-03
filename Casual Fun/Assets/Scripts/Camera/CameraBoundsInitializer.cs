@@ -1,15 +1,17 @@
 using UnityEngine;
 
-namespace CasualFun
+namespace CasualFun.AtCirclesEdge
 {
     public class CameraBoundsInitializer : MonoBehaviour
     {
-        [SerializeField] Camera mainCamera;
         [SerializeField] float cameraOffset = 8;
-        [SerializeField] Renderer origin;
-        
-        float Bounds => origin.bounds.size.x * Screen.height / Screen.width * cameraOffset;
 
-        void Start() => mainCamera.orthographicSize = Bounds;
+        Camera _camera;
+
+        void Awake() => _camera = Camera.main;
+
+        void Start() => _camera.orthographicSize = Bounds;
+        
+        float Bounds => cameraOffset * Screen.height / Screen.width;
     }
 }

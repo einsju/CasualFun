@@ -1,7 +1,7 @@
-using CasualFun.Storage;
+using CasualFun.AtCirclesEdge.Storage;
 using UnityEngine;
 
-namespace CasualFun.Audio
+namespace CasualFun.AtCirclesEdge.Audio
 {
     [RequireComponent(typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour

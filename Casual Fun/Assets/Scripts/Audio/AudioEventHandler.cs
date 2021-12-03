@@ -1,6 +1,6 @@
 using System;
 
-namespace CasualFun.Audio
+namespace CasualFun.AtCirclesEdge.Audio
 {
     public abstract class AudioEventHandler
     {

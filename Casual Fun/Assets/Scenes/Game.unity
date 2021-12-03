@@ -1251,9 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e65b4d62c7c4404291f6bb00b9d88c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420030}
-  cameraOffset: 7.16
-  origin: {fileID: 1017193333}
+  cameraOffset: 5.78
 --- !u!4 &519420032
 Transform:
   m_ObjectHideFlags: 0

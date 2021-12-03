@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace CasualFun.Pooling
+namespace CasualFun.AtCirclesEdge.Pooling
 {
     public class Spawner : MonoBehaviour
     {

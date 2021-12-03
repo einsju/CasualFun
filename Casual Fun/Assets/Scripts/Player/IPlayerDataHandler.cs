@@ -1,4 +1,4 @@
-namespace CasualFun.Player
+namespace CasualFun.AtCirclesEdge.Player
 {
     public interface IPlayerDataHandler
     {

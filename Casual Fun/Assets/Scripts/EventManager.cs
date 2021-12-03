@@ -1,6 +1,6 @@
 using System;
 
-namespace CasualFun
+namespace CasualFun.AtCirclesEdge
 {
     public abstract class EventManager
     {

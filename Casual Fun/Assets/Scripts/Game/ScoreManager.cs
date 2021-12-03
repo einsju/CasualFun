@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace CasualFun.Game
+namespace CasualFun.AtCirclesEdge.Game
 {
     public class ScoreManager : MonoBehaviour
     {

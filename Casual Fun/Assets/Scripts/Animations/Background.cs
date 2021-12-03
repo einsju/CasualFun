@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CasualFun.Animations
+namespace CasualFun.AtCirclesEdge.Animations
 {
     public class Background : MonoBehaviour
     {

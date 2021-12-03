@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace CasualFun.Player
+namespace CasualFun.AtCirclesEdge.Player
 {
     public class PlayerDataManager : MonoBehaviour
     {

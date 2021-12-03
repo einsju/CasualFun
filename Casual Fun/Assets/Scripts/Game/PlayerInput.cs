@@ -1,7 +1,7 @@
-using CasualFun.State;
+using CasualFun.AtCirclesEdge.State;
 using UnityEngine;
 
-namespace CasualFun.Games.AtCirclesEdge
+namespace CasualFun.AtCirclesEdge.Game
 {
     public class PlayerInput : GameStateBehaviour
     {
