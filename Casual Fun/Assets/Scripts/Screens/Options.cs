@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CasualFun.AtCirclesEdge.Audio;
 using CasualFun.AtCirclesEdge.Storage;
 using UnityEngine;
@@ -7,8 +8,8 @@ namespace CasualFun.AtCirclesEdge.Screens
 {
     public class Options : MonoBehaviour
     {
-        [SerializeField] Image soundImage;
-        [SerializeField] Image musicImage;
+        [SerializeField] List<Image> soundImages;
+        [SerializeField] List<Image> musicImages;
         
         [SerializeField] Sprite soundOnSprite;
         [SerializeField] Sprite soundOffSprite;
@@ -27,8 +28,10 @@ namespace CasualFun.AtCirclesEdge.Screens
             SetMusicButtonIcon();
         }
         
-        void SetAudioButtonIcon() => soundImage.sprite = _hasAudio ? soundOnSprite : soundOffSprite;
-        void SetMusicButtonIcon() => musicImage.sprite = _hasMusic ? musicOnSprite : musicOffSprite;
+        void SetAudioButtonIcon()
+            => soundImages.ForEach(i => i.sprite = _hasAudio ? soundOnSprite : soundOffSprite);
+        void SetMusicButtonIcon()
+            => musicImages.ForEach(i => i.sprite = _hasMusic ? musicOnSprite : musicOffSprite);
 
         public void OnToggleAudio()
         {

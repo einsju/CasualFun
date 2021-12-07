@@ -29,9 +29,11 @@ namespace CasualFun.AtCirclesEdge.Audio
             => musicThemes = musicThemes.OrderBy(t => Guid.NewGuid()).ToArray();
 
         public static AudioClip GetMusicTheme()
-            => Resources.Load($"Music/Theme_{NextTheme}") as AudioClip;
+        {
+            if (lastPlayedIndex == NumberOfMusicThemes) lastPlayedIndex = 0;
+            return Resources.Load($"Music/Theme_{NextTheme}") as AudioClip;
+        }
 
-        static int NextTheme
-            => musicThemes[Mathf.Clamp(lastPlayedIndex++, 0, NumberOfMusicThemes)];
+        static int NextTheme => musicThemes[Mathf.Clamp(lastPlayedIndex++, 0, NumberOfMusicThemes)];
     }
 }

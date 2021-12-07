@@ -1,3 +1,4 @@
+using CasualFun.AtCirclesEdge.State;
 using CasualFun.AtCirclesEdge.Storage;
 using UnityEngine;
 
@@ -12,29 +13,32 @@ namespace CasualFun.AtCirclesEdge.Audio
         void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
-            _audioSource.clip = MusicThemeCoordinator.GetMusicTheme();
-
             _hasMusic = Preferences.HasMusic;
-            if (_hasMusic) _audioSource.Play();
         }
 
-        void OnEnable() => AudioEventHandler.MusicOptionChanged += MusicOptionChanged;
-
-        void OnDisable() => AudioEventHandler.MusicOptionChanged -= MusicOptionChanged;
-
-        void MusicOptionChanged(bool value) => StopOrResume(value);
-
-        void StopOrResume(bool hasMusic)
+        void OnEnable()
         {
-            _hasMusic = hasMusic;
-            
-            if (!_hasMusic)
-            {
-                _audioSource.Pause();
-                return;
-            }
-            
+            AudioEventHandler.MusicOptionChanged += MusicOptionChanged;
+            GameStateEventHandler.GameStarted += PlayMusic;
+            GameStateEventHandler.GameOver += StopMusic;
+        }
+
+        void OnDisable()
+        {
+            AudioEventHandler.MusicOptionChanged -= MusicOptionChanged;
+            GameStateEventHandler.GameStarted -= PlayMusic;
+            GameStateEventHandler.GameOver -= StopMusic;
+        }
+
+        void PlayMusic()
+        {
+            if (!_hasMusic) return;
+            _audioSource.clip = MusicThemeCoordinator.GetMusicTheme();
             _audioSource.Play();
         }
+
+        void StopMusic() => _audioSource.Stop();
+
+        void MusicOptionChanged(bool value) => _hasMusic = value;
     }
 }
