@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CasualFun.AtCirclesEdge.Player
 {
@@ -14,15 +12,13 @@ namespace CasualFun.AtCirclesEdge.Player
         
         public string Name { get; private set; }
         public int Coins { get; private set; }
-        public Dictionary<int, int> GamesHighScores { get; private set; }
-
-        public int TotalHighScore => GamesHighScores.Sum(gh => gh.Value);
+        public int HighScore { get; private set; }
 
         public PlayerData(string name = DefaultPlayerName, int coins = 1000)
         {
             Name = name;
             Coins = coins;
-            GamesHighScores = new Dictionary<int, int>();
+            HighScore = 0;
         }
 
         public void SetName(string name)
@@ -40,19 +36,13 @@ namespace CasualFun.AtCirclesEdge.Player
             NotifyPlayerDataHasUpdated();
         }
 
-        public int GetHighScore(int key)
-            => GamesHighScores.ContainsKey(key) ? GamesHighScores[key] : 0;
-
-        public void SetHighScore(int key, int score)
+        public void SetHighScore(int score)
         {
-            if (!ShouldSaveHighScore(key, score)) return;
-            GamesHighScores[key] = score;
+            if (score < HighScore) return;
+            HighScore = score;
             NewHighScoreAchieved?.Invoke(score);
             NotifyPlayerDataHasUpdated();
         }
-        
-        bool ShouldSaveHighScore(int key, int score)
-            => score > 0 && (!GamesHighScores.ContainsKey(key) || score > GamesHighScores[key]);
         
         void NotifyPlayerDataHasUpdated() => PlayerDataUpdated?.Invoke(this);
     }

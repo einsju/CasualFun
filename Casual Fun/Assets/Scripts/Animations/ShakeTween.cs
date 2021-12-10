@@ -4,12 +4,19 @@ namespace CasualFun.AtCirclesEdge.Animations
 {
     public class ShakeTween : Tween
     {
-        protected override void DoTween()
-        {
-        }
+        [SerializeField] Vector3 destination = Vector3.one;
 
-        protected override void DoTweenLoop()
-        {
-        }
+        Transform _transform;
+
+        void Awake() => _transform = transform;
+
+        protected override void DoTween() =>
+            _transform.LeanScale(destination, duration)
+                .setEase(LeanTweenType.easeShake);
+
+        protected override void DoTweenLoop() =>
+            _transform.LeanScale(destination, duration)
+                .setEase(LeanTweenType.easeShake)
+                .setLoopPingPong();
     }
 }

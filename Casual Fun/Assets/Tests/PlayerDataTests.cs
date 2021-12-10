@@ -6,10 +6,10 @@ namespace CasualFun
     public class PlayerDataTests
     {
         [Test]
-        public void ShouldInitializeGamesHighScores_WhenConstructed()
+        public void ShouldInitializeHighScore_WhenConstructed()
         {
             var playerData = new PlayerData();
-            Assert.IsTrue(playerData.GamesHighScores is {Count: 0});
+            Assert.IsTrue(playerData.HighScore is 0);
         }
 
         [Test]
@@ -74,33 +74,14 @@ namespace CasualFun
         }
 
         [Test]
-        public void GetHighScore_ShouldReturnZeroIfNotFound()
-        {
-            var playerData = new PlayerData();
-            var highScore = playerData.GetHighScore(999);
-            
-            Assert.IsTrue(highScore == 0);
-        }
-
-        [Test]
-        public void GetHighScore_ShouldReturnHighScoreIfFound()
-        {
-            var playerData = new PlayerData();
-            
-            playerData.SetHighScore(999, 1500);
-            
-            Assert.IsTrue(playerData.GamesHighScores[999] == 1500);
-        }
-
-        [Test]
         public void SetHighScore_ShouldNotSaveWhenBelowOrEqualToCurrentHighScore()
         {
             var playerData = new PlayerData();
             
-            playerData.SetHighScore(999, 1500);
-            playerData.SetHighScore(999, 300);
+            playerData.SetHighScore(1500);
+            playerData.SetHighScore(300);
             
-            Assert.IsTrue(playerData.GetHighScore(999) == 1500);
+            Assert.IsTrue(playerData.HighScore == 1500);
         }
 
         [Test]
@@ -111,7 +92,7 @@ namespace CasualFun
 
             PlayerData.NewHighScoreAchieved += data => notified = true;
 
-            playerData.SetHighScore(999, 1500);
+            playerData.SetHighScore(1500);
 
             Assert.IsTrue(notified);
         }
@@ -124,7 +105,7 @@ namespace CasualFun
 
             PlayerData.PlayerDataUpdated += data => notified = true;
 
-            playerData.SetHighScore(999, 1500);
+            playerData.SetHighScore(1500);
 
             Assert.IsTrue(notified);
         }

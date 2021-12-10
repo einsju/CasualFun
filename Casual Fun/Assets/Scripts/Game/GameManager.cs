@@ -40,7 +40,7 @@ namespace CasualFun.AtCirclesEdge.Game
         void GameOver()
         {
             ResetTimeScale();
-            PlayerDataManager.PlayerData.SetHighScore(PlayerDataManager.HighScoreKey, scoreManager.Score);
+            PlayerDataManager.PlayerData.SetHighScore(scoreManager.Score);
             PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
         }
 
