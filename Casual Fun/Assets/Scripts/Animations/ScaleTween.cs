@@ -4,14 +4,15 @@ namespace CasualFun.AtCirclesEdge.Animations
 {
     public class ScaleTween : Tween
     {
-        [SerializeField] Vector3 destination = Vector3.one;
+        [SerializeField] Vector3 startScale = Vector3.one;
+        [SerializeField] Vector3 endScale = Vector3.one;
 
-        Transform _transform;
+        void OnDisable() => Transform.localScale = startScale;
 
-        void Awake() => _transform = transform;
+        protected override void DoTween() =>
+            Transform.LeanScale(endScale, duration).setDelay(delay).setEase(tweenType);
 
-        protected override void DoTween() => _transform.LeanScale(destination, duration);
-
-        protected override void DoTweenLoop() => _transform.LeanScale(destination, duration).setLoopPingPong();
+        protected override void DoTweenLoop() =>
+            Transform.LeanScale(endScale, duration).setDelay(delay).setEase(tweenType).setLoopPingPong();
     }
 }

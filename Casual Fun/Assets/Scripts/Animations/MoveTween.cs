@@ -2,24 +2,17 @@ using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge.Animations
 {
-    public class MoveTween : MonoBehaviour
+    public class MoveTween : Tween
     {
         [SerializeField] Vector3 startPosition;
         [SerializeField] Vector3 endPosition;
-        [SerializeField] float duration;
 
-        Transform _transform;
+        void OnDisable() => Transform.localPosition = startPosition;
 
-        void Awake() => _transform = transform;
-
-        void OnEnable()
-        {
-            ResetPosition();
-            DoTween();
-        }
+        protected override void DoTween() =>
+            Transform.LeanMoveLocal(endPosition, duration).setDelay(delay).setEase(tweenType);
         
-        void ResetPosition() => _transform.localPosition = startPosition;
-
-        void DoTween() => _transform.LeanMoveLocal(endPosition, duration).setEaseOutBounce();
+        protected override void DoTweenLoop() =>
+            Transform.LeanMoveLocal(endPosition, duration).setDelay(delay).setEase(tweenType).setLoopPingPong();
     }
 }

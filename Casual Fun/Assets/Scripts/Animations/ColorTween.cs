@@ -6,21 +6,21 @@ namespace CasualFun.AtCirclesEdge.Animations
     public class ColorTween : Tween
     {
         [SerializeField] TextMeshProUGUI textToTween;
-        [SerializeField] Color destination;
+        [SerializeField] Color endColor;
 
         Color _originalColor;
 
         void Awake() => _originalColor = textToTween.color;
 
         protected override void DoTween() =>
-            LeanTween.value(gameObject, UpdateValueCallback, _originalColor, destination, 1f)
-                .setDelay(duration);
+            LeanTween.value(gameObject, ValueUpdated, _originalColor, endColor, duration)
+                .setDelay(delay).setEase(tweenType);
+                
 
         protected override void DoTweenLoop() =>
-            LeanTween.value(gameObject, UpdateValueCallback, _originalColor, destination, 1f)
-                .setDelay(duration)
-                .setLoopPingPong();
+            LeanTween.value(gameObject, ValueUpdated, _originalColor, endColor, duration)
+                .setDelay(delay).setEase(tweenType).setLoopPingPong();
 
-        void UpdateValueCallback(Color color) => textToTween.color = color;
+        void ValueUpdated(Color color) => textToTween.color = color;
     }
 }

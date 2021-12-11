@@ -1,13 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge.Animations
 {
     public abstract class Tween : MonoBehaviour
     {
-        [SerializeField] protected float duration;
         [SerializeField] protected bool loop = true;
+        [Range(0, 5)][SerializeField] protected float delay;
+        [Range(0, 5)][SerializeField] protected float duration = 1f;
+        [SerializeField] protected LeanTweenType tweenType = LeanTweenType.notUsed;
 
-        void Start()
+        protected Transform Transform;
+
+        void Awake() => Transform = transform;
+        
+        void Start() => PrepareNonLoopAnimationsToRun();
+
+        void OnEnable()
         {
             if (!loop)
             {
@@ -17,6 +26,13 @@ namespace CasualFun.AtCirclesEdge.Animations
             
             DoTweenLoop();
             
+        }
+
+        void PrepareNonLoopAnimationsToRun()
+        {
+            if (loop) return;
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
         protected abstract void DoTween();
