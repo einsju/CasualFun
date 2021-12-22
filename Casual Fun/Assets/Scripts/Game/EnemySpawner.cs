@@ -8,7 +8,7 @@ namespace CasualFun.AtCirclesEdge.Game
 {
     public class EnemySpawner : GameStateBehaviour
     {
-        [SerializeField] float spawnRate = 0.3f;
+        [SerializeField] float spawnRate = 0.5f;
         [SerializeField] Pool enemy;
         [SerializeField] Player player;
         [SerializeField] AudioPlayer audioPlayer;
@@ -24,6 +24,7 @@ namespace CasualFun.AtCirclesEdge.Game
 
         void Update()
         {
+            if (!GameStateHandler.GameIsRunning) return;
             _timer += Time.deltaTime;
 
             if (!CanSpawn) return;

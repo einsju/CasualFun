@@ -6,7 +6,7 @@ namespace CasualFun.AtCirclesEdge.Game
 {
     public class Player : GameStateBehaviour, IKillable
     {
-        [SerializeField] float speed = 100;
+        [SerializeField] float speed = 100f;
         [SerializeField] Transform playerBase;
 
         SpriteRenderer _spriteRenderer;
@@ -25,9 +25,13 @@ namespace CasualFun.AtCirclesEdge.Game
             _spriteRenderer.enabled = _collider.enabled = true;
         }
 
-        void Update() => Move();
-        
-        void Move() => playerBase.Rotate(0, 0, speed * Time.unscaledDeltaTime);
+        void Update()
+        {
+            if (!GameStateHandler.GameIsRunning) return;
+            Move();
+        }
+
+        void Move() => playerBase.Rotate(0, 0, speed * Time.deltaTime);
 
         public void ChangeDirection()
         {
