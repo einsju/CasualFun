@@ -25,12 +25,16 @@ namespace CasualFun.AtCirclesEdge.Game
         void Update()
         {
             if (!GameStateHandler.GameIsRunning) return;
-            _timer += Time.deltaTime;
+            IncreaseTimer();
 
             if (!CanSpawn) return;
             Spawn();
-            _timer = 0f;
+            ResetTimer();
         }
+
+        void IncreaseTimer() => _timer += Time.deltaTime;
+
+        void ResetTimer() => _timer = 0f;
         
         bool CanSpawn => _timer >= spawnRate;
         

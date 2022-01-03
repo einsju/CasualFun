@@ -1,7 +1,6 @@
 using CasualFun.AtCirclesEdge.Abstractions;
 using CasualFun.AtCirclesEdge.State;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace CasualFun.AtCirclesEdge.Game
 {
@@ -27,8 +26,8 @@ namespace CasualFun.AtCirclesEdge.Game
         void Start() => HideCoin();
 
         void OnDisable() => Reposition();
-        
-        void Reposition() => transform.parent.eulerAngles = RandomPointInCircle;
+
+        void Reposition() => transform.parent.MoveToRandomPositionInCircle();
 
         void Update()
         {
@@ -64,7 +63,5 @@ namespace CasualFun.AtCirclesEdge.Game
         }
 
         bool CanCollect => CoinIsVisible;
-
-        static Vector3 RandomPointInCircle => new Vector3(0, 0, Random.Range(-360, 360));
     }
 }
