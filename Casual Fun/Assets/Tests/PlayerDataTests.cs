@@ -6,7 +6,7 @@ namespace CasualFun
     public class PlayerDataTests
     {
         [Test]
-        public void ShouldInitializeHighScore_WhenConstructed()
+        public void Construction_ShouldInitializeHighScore()
         {
             var playerData = new PlayerData();
             Assert.IsTrue(playerData.HighScore is 0);
