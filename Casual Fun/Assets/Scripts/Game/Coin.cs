@@ -15,6 +15,7 @@ namespace CasualFun.AtCirclesEdge.Game
         bool CoinIsVisible => _renderer.isVisible;
 
         void ShowCoin() => _renderer.enabled = true;
+        
         void HideCoin()
         {
             _timer = 0;
@@ -58,7 +59,7 @@ namespace CasualFun.AtCirclesEdge.Game
         public void Collect()
         {
             if (!CanCollect) return;
-            GameManager.Instance.PlayerPickedUpCoin(_renderer.transform.position);
+            EventManager.OnPlayerPickedUpCoin(_renderer.transform.position);
             HideCoin();
         }
 

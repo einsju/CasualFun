@@ -1,4 +1,6 @@
-﻿using CasualFun.AtCirclesEdge.Audio;
+﻿using System;
+using CasualFun.AtCirclesEdge.Audio;
+using CasualFun.AtCirclesEdge.Game.Levels;
 using CasualFun.AtCirclesEdge.Player;
 using CasualFun.AtCirclesEdge.Pooling;
 using CasualFun.AtCirclesEdge.State;
@@ -8,59 +10,69 @@ namespace CasualFun.AtCirclesEdge.Game
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
-        
-        [SerializeField] protected ScoreManager scoreManager;
         [SerializeField] AudioPlayer audioPlayer;
         [SerializeField] Spawner spawner;
         [SerializeField] int collectableEffectPoolIndex;
         [SerializeField] int explosionEffectPoolIndex = 1;
+
+        LevelManager _levelManager;
+        ScoreManager _scoreManager;
         
         void Awake()
         {
-            Instance = this;
+            _levelManager = GetComponent<LevelManager>();
+            _scoreManager = GetComponent<ScoreManager>();
             GameStateEventHandler.GameStarted += GameStarted;
             GameStateEventHandler.GameOver += GameOver;
             PlayerData.NewHighScoreAchieved += NewHighScoreAchieved;
+            EventManager.PlayerPickedUpCollectable += PlayerPickedUpCollectable;
+            EventManager.PlayerPickedUpCoin += PlayerPickedUpCoin;
+            EventManager.PlayerWasHitByEnemy += PlayerWasHitByEnemy;
         }
+
+        void Start() => _levelManager.PrepareLevel();
 
         void OnDestroy()
         {
             GameStateEventHandler.GameStarted -= GameStarted;
             GameStateEventHandler.GameOver -= GameOver;
             PlayerData.NewHighScoreAchieved -= NewHighScoreAchieved;
+            EventManager.PlayerPickedUpCollectable -= PlayerPickedUpCollectable;
+            EventManager.PlayerPickedUpCoin -= PlayerPickedUpCoin;
+            EventManager.PlayerWasHitByEnemy -= PlayerWasHitByEnemy;
         }
         
         void GameStarted()
         {
             ResetTimeScale();
-            scoreManager.ResetScore();
+            _scoreManager.ResetScore();
         }
 
         void GameOver()
         {
             ResetTimeScale();
-            PlayerDataManager.PlayerData.SetHighScore(scoreManager.Score);
+            PlayerDataManager.PlayerData.SetHighScore(_scoreManager.Score);
             PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
+            _levelManager.PrepareLevel();
         }
 
         static void ResetTimeScale() => Time.timeScale = 1;
 
-        public void PlayerWasHitByEnemy(Transform playerTransform)
+        void PlayerWasHitByEnemy(Transform playerTransform)
         {
             SpawnEffect(explosionEffectPoolIndex, playerTransform.position, playerTransform.rotation);
             audioPlayer.OnGameOver();
             GameStateHandler.EndGame();
         }
 
-        public void PlayerPickedUpCollectable(Vector3 position)
+        void PlayerPickedUpCollectable(Vector3 position)
         {
-            scoreManager.AddScore(1);
+            _scoreManager.AddScore(1);
             SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);
             audioPlayer.OnItemCollected();
         }
         
-        public void PlayerPickedUpCoin(Vector3 position)
+        void PlayerPickedUpCoin(Vector3 position)
         {
             PlayerDataManager.PlayerData.AddCoins(1);
             SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);

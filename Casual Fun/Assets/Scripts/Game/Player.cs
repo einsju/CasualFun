@@ -46,7 +46,7 @@ namespace CasualFun.AtCirclesEdge.Game
         public void Kill()
         {
             _spriteRenderer.enabled = _collider.enabled = false;
-            GameManager.Instance.PlayerWasHitByEnemy(transform);
+            EventManager.OnPlayerWasHitByEnemy(transform);
         }
     }
 }
