@@ -11,13 +11,15 @@ namespace CasualFun.AtCirclesEdge.Player
         public static event Action<int> NewHighScoreAchieved;
         
         public string Name { get; private set; }
+        public int Level { get; private set; }
         public int Coins { get; private set; }
         public int HighScore { get; private set; }
 
-        public PlayerData(string name = DefaultPlayerName, int coins = 1000)
+        public PlayerData(string name = DefaultPlayerName, int coins = 1000, int level = 1)
         {
             Name = name;
             Coins = coins;
+            Level = level;
             HighScore = 0;
         }
 
@@ -34,6 +36,11 @@ namespace CasualFun.AtCirclesEdge.Player
             if (coins < 0) return;
             Coins += coins;
             NotifyPlayerDataHasUpdated();
+        }
+
+        public void IncreaseLevel()
+        {
+            Level++;
         }
 
         public void SetHighScore(int score)

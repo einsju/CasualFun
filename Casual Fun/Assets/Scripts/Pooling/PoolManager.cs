@@ -10,7 +10,7 @@ namespace CasualFun.AtCirclesEdge.Pooling
     {
         readonly Dictionary<Pool, Queue<GameObject>> _pools = new Dictionary<Pool, Queue<GameObject>>();
 
-        PoolManager() => GameStateEventHandler.GameStarted += ResetPools;
+        PoolManager() => GameStateEventHandler.GameOver += ResetPools;
 
         public PoolManager(Pool toPool, Transform parent) : this()
             => InitializePool(new List<Pool> { toPool }, parent);
@@ -24,7 +24,7 @@ namespace CasualFun.AtCirclesEdge.Pooling
             CreatePool(parent);
         }
         
-        ~PoolManager() => GameStateEventHandler.GameStarted -= ResetPools;
+        ~PoolManager() => GameStateEventHandler.GameOver -= ResetPools;
 
         void CreatePool(Transform parent)
         {
@@ -36,12 +36,19 @@ namespace CasualFun.AtCirclesEdge.Pooling
         public GameObject TakeFromPool(Pool pool, Vector3 position, Quaternion rotation)
             => Take(pool, position, rotation);
         
-        GameObject Take(Pool pool, Vector3 position, Quaternion rotation)
+        public GameObject TakeFromPoolUsingLocalPosition(Pool pool, Vector3 position, Quaternion rotation)
+            => Take(pool, position, rotation, true);
+        
+        GameObject Take(Pool pool, Vector3 position, Quaternion rotation, bool usingLocalPosition = false)
         {
             var correctPool = FindPool(pool);
             var itemFromPool = correctPool.Value.Dequeue();
+
+            if (!usingLocalPosition)
+                itemFromPool.transform.position = position;
+            else
+                itemFromPool.transform.localPosition = position;
             
-            itemFromPool.transform.position = position;
             itemFromPool.transform.rotation = rotation;
             ActivatePoolMember(pool.shouldDeactivateMembersBeforeUse, itemFromPool);
             correctPool.Value.Enqueue(itemFromPool);

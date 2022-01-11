@@ -13,5 +13,8 @@ namespace CasualFun.AtCirclesEdge.Pooling
 
         public void Spawn(int poolIndex, Vector3 position, Quaternion rotation)
             => _poolManager.TakeFromPool(pools[poolIndex], position, rotation);
+        
+        public GameObject SpawnWithLocalPosition(int poolIndex, Vector3 position, Quaternion rotation)
+            => _poolManager.TakeFromPoolUsingLocalPosition(pools[poolIndex], position, rotation);
     }
 }

@@ -1,32 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using CasualFun.AtCirclesEdge.State;
+using CasualFun.AtCirclesEdge.Player;
+using CasualFun.AtCirclesEdge.Pooling;
+using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge.Game.Levels
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] Transform levelDataContainer;
-        [SerializeField] List<Level> levels;
+        [SerializeField] Level[] levels;
+        [SerializeField] Spawner spawner;
 
-        public void PrepareLevel()
+        int _levelNumber = 1;
+        int _currentWaveIndex;
+        Level _currentLevel;
+
+        public bool IsOnLastWave => _currentWaveIndex == _currentLevel.SpanWaves.Length - 1;
+        
+        bool HasFinishedAllLevels => _levelNumber > levels.Length;
+        string WavesRemaining => $"{_currentLevel.SpanWaves.Length - _currentWaveIndex}";
+        
+        public void InitializeLevel()
         {
-            var level = levels.First();
-            var firstWave = level.Waves.First();
+            _levelNumber = PlayerDataManager.PlayerData.Level;
+            _currentWaveIndex = 0;
 
-            firstWave.Prefabs.ToList().ForEach(p =>
+            _currentLevel = levels[_levelNumber - 1];
+
+            if (!_currentLevel.SpanWaves.Any())
             {
-                 StartCoroutine(CreatePrefabAfterTimeout(firstWave.Timeout, p.Prefab, p.Degrees));
-            });
+                Debug.Log($"You have forgotten to set up spawn waves for level {_levelNumber}");
+                return;
+            }
+
+            SpawnWave();
         }
 
-        IEnumerator CreatePrefabAfterTimeout(float timeout, GameObject prefab, float degrees)
+        public void SpawnNextWave()
         {
-            yield return new WaitForSeconds(timeout);
-            var newPrefab = Instantiate(prefab, levelDataContainer);
-            newPrefab.transform.eulerAngles = new Vector3(0, 0, degrees);
+            _currentWaveIndex++;
+            SpawnWave();
+        }
+
+        void SpawnWave()
+        {
+            var currentWave = _currentLevel.SpanWaves[_currentWaveIndex];
+            currentWave.Prefabs.ToList().ForEach(SpawnWavePrefab);
+        }
+        
+        void SpawnWavePrefab(PrefabData data)
+        {
+            var go = spawner.SpawnWithLocalPosition((int) data.Pool, data.Prefab.transform.localPosition, Quaternion.Euler(0, 0, data.Degrees));
+            if (data.Pool != LevelPrefabPool.ScorePoint) return;
+            go.GetComponentInChildren<ScorePoint>()?.SetText(WavesRemaining);
         }
     }
 }

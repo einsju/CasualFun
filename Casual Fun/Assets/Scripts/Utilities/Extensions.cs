@@ -1,7 +1,7 @@
 using System.Globalization;
 using UnityEngine;
 
-namespace CasualFun.AtCirclesEdge
+namespace CasualFun.AtCirclesEdge.Utilities
 {
     public static class Extensions
     {

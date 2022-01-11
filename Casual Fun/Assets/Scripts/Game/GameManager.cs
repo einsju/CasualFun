@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using CasualFun.AtCirclesEdge.Audio;
 using CasualFun.AtCirclesEdge.Game.Levels;
 using CasualFun.AtCirclesEdge.Player;
@@ -22,22 +22,24 @@ namespace CasualFun.AtCirclesEdge.Game
         {
             _levelManager = GetComponent<LevelManager>();
             _scoreManager = GetComponent<ScoreManager>();
+        }
+
+        void OnEnable()
+        {
             GameStateEventHandler.GameStarted += GameStarted;
-            GameStateEventHandler.GameOver += GameOver;
             PlayerData.NewHighScoreAchieved += NewHighScoreAchieved;
-            EventManager.PlayerPickedUpCollectable += PlayerPickedUpCollectable;
+            EventManager.PlayerPickedUpScorePoint += PlayerPickedUpScorePoint;
             EventManager.PlayerPickedUpCoin += PlayerPickedUpCoin;
             EventManager.PlayerWasHitByEnemy += PlayerWasHitByEnemy;
         }
 
-        void Start() => _levelManager.PrepareLevel();
+        void Start() => _levelManager.InitializeLevel();
 
-        void OnDestroy()
+        void OnDisable()
         {
             GameStateEventHandler.GameStarted -= GameStarted;
-            GameStateEventHandler.GameOver -= GameOver;
             PlayerData.NewHighScoreAchieved -= NewHighScoreAchieved;
-            EventManager.PlayerPickedUpCollectable -= PlayerPickedUpCollectable;
+            EventManager.PlayerPickedUpScorePoint -= PlayerPickedUpScorePoint;
             EventManager.PlayerPickedUpCoin -= PlayerPickedUpCoin;
             EventManager.PlayerWasHitByEnemy -= PlayerWasHitByEnemy;
         }
@@ -48,12 +50,15 @@ namespace CasualFun.AtCirclesEdge.Game
             _scoreManager.ResetScore();
         }
 
-        void GameOver()
+        IEnumerator GameOver()
         {
             ResetTimeScale();
             PlayerDataManager.PlayerData.SetHighScore(_scoreManager.Score);
             PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
-            _levelManager.PrepareLevel();
+            yield return new WaitForSeconds(1.5f);
+            GameStateHandler.EndGame();
+            yield return new WaitForSeconds(1f);
+            _levelManager.InitializeLevel();
         }
 
         static void ResetTimeScale() => Time.timeScale = 1;
@@ -62,14 +67,26 @@ namespace CasualFun.AtCirclesEdge.Game
         {
             SpawnEffect(explosionEffectPoolIndex, playerTransform.position, playerTransform.rotation);
             audioPlayer.OnGameOver();
-            GameStateHandler.EndGame();
+            StartCoroutine(GameOver());
         }
 
-        void PlayerPickedUpCollectable(Vector3 position)
+        void PlayerPickedUpScorePoint(Vector3 position)
         {
             _scoreManager.AddScore(1);
             SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);
             audioPlayer.OnItemCollected();
+
+            if (!_levelManager.IsOnLastWave)
+            {
+                _levelManager.SpawnNextWave();
+                return;
+            }
+            
+            PlayerDataManager.PlayerData.IncreaseLevel();
+            PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
+            _levelManager.InitializeLevel();
+            
+            // TODO: Reset player and show popup for completed level 
         }
         
         void PlayerPickedUpCoin(Vector3 position)
