@@ -109,5 +109,14 @@ namespace CasualFun
 
             Assert.IsTrue(notified);
         }
+
+        // [Test]
+        // public void IncreaseLevel_ShouldNotExceedMaximum()
+        // {
+        //     var playerData = new PlayerData();
+        //
+        //     playerData.Level = 100;
+        //     playerData.IncreaseLevel();
+        // }
     }
 }

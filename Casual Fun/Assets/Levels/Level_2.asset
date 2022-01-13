@@ -22,3 +22,7 @@ MonoBehaviour:
       prefab: {fileID: 8803435412888714092, guid: aa503bc2bfef69843bd7d862ce1e18d4,
         type: 3}
       pool: 0
+    - degrees: 0
+      prefab: {fileID: 8803435412888714092, guid: aa503bc2bfef69843bd7d862ce1e18d4,
+        type: 3}
+      pool: 0

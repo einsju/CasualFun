@@ -16,8 +16,8 @@ namespace CasualFun.AtCirclesEdge.Game.Levels
         Level _currentLevel;
 
         public bool IsOnLastWave => _currentWaveIndex == _currentLevel.SpanWaves.Length - 1;
+        public bool HasFinishedAllLevels => _levelNumber >= levels.Length;
         
-        bool HasFinishedAllLevels => _levelNumber > levels.Length;
         string WavesRemaining => $"{_currentLevel.SpanWaves.Length - _currentWaveIndex}";
         
         public void InitializeLevel()

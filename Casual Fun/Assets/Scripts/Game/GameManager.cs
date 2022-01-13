@@ -81,6 +81,12 @@ namespace CasualFun.AtCirclesEdge.Game
                 _levelManager.SpawnNextWave();
                 return;
             }
+
+            if (_levelManager.HasFinishedAllLevels)
+            {
+                Debug.Log("Congratulations. You have completed all levels");
+                return;
+            }
             
             PlayerDataManager.PlayerData.IncreaseLevel();
             PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
