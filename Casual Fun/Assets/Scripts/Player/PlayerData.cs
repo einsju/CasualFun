@@ -6,7 +6,7 @@ namespace CasualFun.AtCirclesEdge.Player
     public class PlayerData
     {
         public const string DefaultPlayerName = "Guest";
-        
+
         public static event Action<PlayerData> PlayerDataUpdated;
         public static event Action<int> NewHighScoreAchieved;
         
@@ -20,7 +20,6 @@ namespace CasualFun.AtCirclesEdge.Player
             Name = name;
             Coins = coins;
             Level = level;
-            HighScore = 0;
         }
 
         public void SetName(string name)
@@ -28,29 +27,24 @@ namespace CasualFun.AtCirclesEdge.Player
             if (name == Name) return;
             if (string.IsNullOrEmpty(name)) name = DefaultPlayerName;
             Name = name;
-            NotifyPlayerDataHasUpdated();
+            PlayerDataUpdated?.Invoke(this);
         }
 
         public void AddCoins(int coins)
         {
             if (coins < 0) return;
             Coins += coins;
-            NotifyPlayerDataHasUpdated();
+            PlayerDataUpdated?.Invoke(this);
         }
 
-        public void IncreaseLevel()
-        {
-            Level++;
-        }
+        public void IncreaseLevel() => Level++;
 
         public void SetHighScore(int score)
         {
             if (score < HighScore) return;
             HighScore = score;
             NewHighScoreAchieved?.Invoke(score);
-            NotifyPlayerDataHasUpdated();
+            PlayerDataUpdated?.Invoke(this);
         }
-        
-        void NotifyPlayerDataHasUpdated() => PlayerDataUpdated?.Invoke(this);
     }
 }

@@ -9,7 +9,7 @@ namespace CasualFun.AtCirclesEdge.Game
 
         void Update()
         {
-            if (!GameStateHandler.GameIsRunning || !Input.GetButtonDown("Fire1")) return;
+            if (!GameManager.Instance.GameIsRunning || !Input.GetButtonDown("Fire1")) return;
             player.ChangeDirection();
         }
     }

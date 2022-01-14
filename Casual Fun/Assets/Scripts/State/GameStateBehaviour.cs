@@ -8,21 +8,20 @@ namespace CasualFun.AtCirclesEdge.State
         
         public virtual void Awake()
         {
-            GameStateEventHandler.GameStarted += GameStarted;
-            GameStateEventHandler.GameOver += GameOver;
+            GameStateEventHandler.GameStarted += OnGameStarted;
+            GameStateEventHandler.GameOver += OnGameOver;
+            GameStateEventHandler.LevelCompleted += OnGameOver;
             enabled = !disableAtStartup;
         }
 
         void OnDestroy()
         {
-            GameStateEventHandler.GameStarted -= GameStarted;
-            GameStateEventHandler.GameOver -= GameOver;
+            GameStateEventHandler.GameStarted -= OnGameStarted;
+            GameStateEventHandler.GameOver -= OnGameOver;
+            GameStateEventHandler.LevelCompleted -= OnGameOver;
         }
 
-        void GameStarted() => enabled = true;
-        void GameOver() => enabled = false;
-
-        protected static void ResetRotation(Transform transformToReset)
-            => transformToReset.rotation = Quaternion.identity;
+        protected virtual void OnGameStarted() => enabled = true;
+        protected virtual void OnGameOver() => enabled = false;
     }
 }

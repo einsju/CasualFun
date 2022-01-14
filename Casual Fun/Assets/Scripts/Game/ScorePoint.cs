@@ -19,7 +19,7 @@ namespace CasualFun.AtCirclesEdge.Game
 
         public void Collect()
         {
-            EventManager.OnPlayerPickedUpScorePoint(_renderer.transform.position);
+            GameManager.Instance.PlayerPickedUpScorePoint(_renderer.transform.position);
             transform.parent.gameObject.SetActive(false);
         }
     }

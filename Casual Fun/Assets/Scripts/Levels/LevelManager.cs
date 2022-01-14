@@ -1,5 +1,4 @@
 using System.Linq;
-using CasualFun.AtCirclesEdge.Player;
 using CasualFun.AtCirclesEdge.Pooling;
 using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
@@ -16,23 +15,16 @@ namespace CasualFun.AtCirclesEdge.Game.Levels
         Level _currentLevel;
 
         public bool IsOnLastWave => _currentWaveIndex == _currentLevel.SpanWaves.Length - 1;
-        public bool HasFinishedAllLevels => _levelNumber >= levels.Length;
+        public bool HasFinishedAllLevels => _levelNumber == levels.Length && IsOnLastWave;
         
         string WavesRemaining => $"{_currentLevel.SpanWaves.Length - _currentWaveIndex}";
         
-        public void InitializeLevel()
+        public void PrepareLevel()
         {
-            _levelNumber = PlayerDataManager.PlayerData.Level;
+            _levelNumber = PlayerDataInstance.PlayerData.Level;
             _currentWaveIndex = 0;
-
             _currentLevel = levels[_levelNumber - 1];
-
-            if (!_currentLevel.SpanWaves.Any())
-            {
-                Debug.Log($"You have forgotten to set up spawn waves for level {_levelNumber}");
-                return;
-            }
-
+            
             SpawnWave();
         }
 

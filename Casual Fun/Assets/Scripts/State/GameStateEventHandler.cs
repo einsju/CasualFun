@@ -9,5 +9,8 @@ namespace CasualFun.AtCirclesEdge.State
         
         public static event Action GameOver;
         public static void OnGameOver() => GameOver?.Invoke();
+        
+        public static event Action LevelCompleted;
+        public static void OnLevelCompleted() => LevelCompleted?.Invoke();
     }
 }

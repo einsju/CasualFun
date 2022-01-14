@@ -19,15 +19,24 @@ namespace CasualFun.AtCirclesEdge.Game
             base.Awake();
         }
 
-        void OnEnable()
+        protected override void OnGameStarted()
         {
-            ResetRotation(playerBase);
+            base.OnGameStarted();
             _spriteRenderer.enabled = _collider.enabled = true;
+            ResetRotation();
         }
+
+        protected override void OnGameOver()
+        {
+            base.OnGameOver();
+            ResetRotation();
+        }
+
+        void ResetRotation() => playerBase.rotation = Quaternion.identity;
 
         void Update()
         {
-            if (!GameStateHandler.GameIsRunning) return;
+            if (!GameManager.Instance.GameIsRunning) return;
             Move();
         }
 
@@ -46,7 +55,7 @@ namespace CasualFun.AtCirclesEdge.Game
         public void Kill()
         {
             _spriteRenderer.enabled = _collider.enabled = false;
-            EventManager.OnPlayerWasHitByEnemy(transform);
+            GameManager.Instance.PlayerWasHitByEnemy(transform);
         }
     }
 }

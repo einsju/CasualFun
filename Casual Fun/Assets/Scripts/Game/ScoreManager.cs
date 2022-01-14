@@ -1,3 +1,4 @@
+using CasualFun.AtCirclesEdge.State;
 using TMPro;
 using UnityEngine;
 
@@ -7,22 +8,26 @@ namespace CasualFun.AtCirclesEdge.Game
     {
         [SerializeField] TextMeshProUGUI scoreText;
 
-        public int Score { get; private set; }
+        int _score;
 
-        void Awake() => ShowScore();
+        void Awake()
+        {
+            GameStateEventHandler.GameStarted += ResetScore;
+            //GameStateEventHandler.LevelCompleted += () => PlayerDataInstance.PlayerData.SetHighScore(_score);
+        }
 
         public void AddScore(int score)
         {
-            Score += score;
+            _score += score;
             ShowScore();
         }
 
-        public void ResetScore()
+        void ResetScore()
         {
-            Score = 0;
+            _score = 0;
             ShowScore();
         }
 
-        void ShowScore() => scoreText.text = $"{Score}";
+        void ShowScore() => scoreText.text = $"{_score}";
     }
 }

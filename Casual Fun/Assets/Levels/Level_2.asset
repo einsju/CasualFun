@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spanWaves:
   - prefabs:
-    - degrees: 20
+    - degrees: 40
       prefab: {fileID: 8803435412888714092, guid: 9da2fbd18841f8c469ca1c5b570ebca4,
         type: 3}
       pool: 1
-    - degrees: 40
+    - degrees: 0
       prefab: {fileID: 8803435412888714092, guid: aa503bc2bfef69843bd7d862ce1e18d4,
         type: 3}
       pool: 0
-    - degrees: 0
+  - prefabs:
+    - degrees: 60
       prefab: {fileID: 8803435412888714092, guid: aa503bc2bfef69843bd7d862ce1e18d4,
         type: 3}
       pool: 0

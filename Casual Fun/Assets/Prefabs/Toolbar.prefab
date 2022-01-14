@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4991450330332781485}
   - component: {fileID: 4991450330332781487}
   - component: {fileID: 4991450330332781486}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 4991450330510598397}
   - component: {fileID: 4991450330510598396}
   - component: {fileID: 4991450330510598371}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fx_Star_Sparkle_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5008,7 +5008,7 @@ GameObject:
   - component: {fileID: 4991450330638017574}
   - component: {fileID: 4991450330638017568}
   - component: {fileID: 4991450330638017575}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Energe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5085,7 +5085,7 @@ GameObject:
   - component: {fileID: 4991450331065125638}
   - component: {fileID: 4991450331065125637}
   - component: {fileID: 4991450331065125636}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5242,7 +5242,7 @@ GameObject:
   - component: {fileID: 4991450331216492734}
   - component: {fileID: 4991450331216492733}
   - component: {fileID: 4991450331216492732}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5382,7 +5382,7 @@ GameObject:
   - component: {fileID: 4991450331520433952}
   - component: {fileID: 4991450331520433959}
   - component: {fileID: 7977450971604980142}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5458,9 +5458,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aedb829e7232fd41bde81db4a18e2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.5
   loop: 1
-  destination: {x: 0.97, y: 0.97, z: 1}
+  delay: 1
+  duration: 1
+  tweenType: 30
+  startScale: {x: 1, y: 1, z: 1}
+  endScale: {x: 0.98, y: 0.98, z: 1}
 --- !u!1 &4991450331559528333
 GameObject:
   m_ObjectHideFlags: 0
@@ -5474,7 +5477,7 @@ GameObject:
   - component: {fileID: 4991450331559528329}
   - component: {fileID: 4991450331559528328}
   - component: {fileID: 4991450331559528335}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5592,9 +5595,8 @@ GameObject:
   - component: {fileID: 4991450331587082212}
   - component: {fileID: 4991450331587082214}
   - component: {fileID: 4991450331587082213}
-  - component: {fileID: 5277362772596162064}
-  - component: {fileID: 6197276550786295268}
-  m_Layer: 5
+  - component: {fileID: 3428985380221440414}
+  m_Layer: 6
   m_Name: Toolbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5660,7 +5662,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5277362772596162064
+--- !u!114 &3428985380221440414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5669,24 +5671,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4991450331587082219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40dda0aef2097dd44b59c9f588f37903, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e9e96e67ab6f5c4d9be73ff4df4b42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: {fileID: 4991450330332781486}
-  highScoreText: {fileID: 5693175096303610456}
-  coinsText: {fileID: 4991450331065125637}
---- !u!114 &6197276550786295268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4991450331587082219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2c2d5fe6360b1b4db654475ee4541d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  highScore: {fileID: 5693175096303610456}
+  coins: {fileID: 4991450331065125637}
 --- !u!1 &4991450331638494178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5699,7 +5689,7 @@ GameObject:
   - component: {fileID: 5527761145069484557}
   - component: {fileID: 8382231267131988459}
   - component: {fileID: 8906398642435298734}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

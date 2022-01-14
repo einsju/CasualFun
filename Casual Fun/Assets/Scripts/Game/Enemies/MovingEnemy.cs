@@ -13,7 +13,7 @@ namespace CasualFun.AtCirclesEdge.Game.Enemies
 
         void Update()
         {
-            if (!GameStateHandler.GameIsRunning) return;
+            if (!GameManager.Instance.GameIsRunning) return;
             Move();
         }
 

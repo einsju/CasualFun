@@ -1,26 +1,15 @@
-using System;
-
 namespace CasualFun.AtCirclesEdge.Player
 {
     public class PlayerDataService
-    {
-        static event Action<PlayerData> PlayerDataIsReadyToBeSaved;
-
-        public static void OnPlayerDataIsReadyToBeSaved(PlayerData playerData)
-            => PlayerDataIsReadyToBeSaved?.Invoke(playerData);
-        
+    {   
         readonly IPlayerDataHandler _handler;
 
-        public PlayerDataService(IPlayerDataHandler handler)
-        {
-            _handler = handler;
-            PlayerDataIsReadyToBeSaved += SavePlayerData;
-        }
+        public PlayerDataService(IPlayerDataHandler handler) => _handler = handler;
 
-        ~PlayerDataService() => PlayerDataIsReadyToBeSaved -= SavePlayerData;
+        //~PlayerDataService() => SavePlayerData();
 
         public PlayerData GetPlayerData() => _handler.Load();
-
-        void SavePlayerData(PlayerData data) => _handler.Save(data);
+        
+        void SavePlayerData() => _handler.Save(PlayerDataInstance.PlayerData);
     }
 }

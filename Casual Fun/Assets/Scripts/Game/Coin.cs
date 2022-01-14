@@ -1,5 +1,4 @@
 using CasualFun.AtCirclesEdge.Abstractions;
-using CasualFun.AtCirclesEdge.State;
 using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
 
@@ -33,7 +32,7 @@ namespace CasualFun.AtCirclesEdge.Game
 
         void Update()
         {
-            if (!GameStateHandler.GameIsRunning) return;
+            if (!GameManager.Instance.GameIsRunning) return;
             HandleCoinVisibility();
         }
 
@@ -60,7 +59,7 @@ namespace CasualFun.AtCirclesEdge.Game
         public void Collect()
         {
             if (!CanCollect) return;
-            EventManager.OnPlayerPickedUpCoin(_renderer.transform.position);
+            GameManager.Instance.PlayerPickedUpCoin(_renderer.transform.position);
             HideCoin();
         }
 

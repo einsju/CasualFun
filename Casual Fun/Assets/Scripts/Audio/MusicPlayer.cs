@@ -1,4 +1,3 @@
-using CasualFun.AtCirclesEdge.State;
 using CasualFun.AtCirclesEdge.Storage;
 using UnityEngine;
 
@@ -16,28 +15,18 @@ namespace CasualFun.AtCirclesEdge.Audio
             _hasMusic = Preferences.HasMusic;
         }
 
-        void OnEnable()
-        {
-            AudioEventHandler.MusicOptionChanged += MusicOptionChanged;
-            GameStateEventHandler.GameStarted += PlayMusic;
-            GameStateEventHandler.GameOver += StopMusic;
-        }
+        void OnEnable() => AudioEventHandler.MusicOptionChanged += MusicOptionChanged;
 
-        void OnDisable()
-        {
-            AudioEventHandler.MusicOptionChanged -= MusicOptionChanged;
-            GameStateEventHandler.GameStarted -= PlayMusic;
-            GameStateEventHandler.GameOver -= StopMusic;
-        }
+        void OnDisable() => AudioEventHandler.MusicOptionChanged -= MusicOptionChanged;
 
-        void PlayMusic()
+        public void PlayMusic()
         {
             if (!_hasMusic) return;
             _audioSource.clip = MusicThemeCoordinator.GetMusicTheme();
             _audioSource.Play();
         }
 
-        void StopMusic() => _audioSource.Stop();
+        public void StopMusic() => _audioSource.Stop();
 
         void MusicOptionChanged(bool value) => _hasMusic = value;
     }

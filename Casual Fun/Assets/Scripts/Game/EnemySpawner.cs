@@ -24,7 +24,7 @@ namespace CasualFun.AtCirclesEdge.Game
 
         void Update()
         {
-            if (!GameStateHandler.GameIsRunning) return;
+            if (!GameManager.Instance.GameIsRunning) return;
             IncreaseTimer();
 
             if (!CanSpawn) return;

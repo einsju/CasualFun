@@ -6,21 +6,23 @@ namespace CasualFun
     public class PlayerDataTests
     {
         [Test]
-        public void Construction_ShouldInitializeHighScore()
+        public void SetName_ShouldUseDefaultIfBlank()
         {
             var playerData = new PlayerData();
-            Assert.IsTrue(playerData.HighScore is 0);
+            
+            playerData.SetName("");
+            
+            Assert.AreEqual(playerData.Name, PlayerData.DefaultPlayerName);
         }
-
+        
         [Test]
         public void SetName_ShouldUseDefaultIfNotAssigned()
         {
             var playerData = new PlayerData();
             
-            playerData.SetName("");
-            Assert.IsTrue(playerData.Name == PlayerData.DefaultPlayerName);
             playerData.SetName(null);
-            Assert.IsTrue(playerData.Name == PlayerData.DefaultPlayerName);
+            
+            Assert.AreEqual(playerData.Name, PlayerData.DefaultPlayerName);
         }
         
         [Test]
@@ -57,7 +59,7 @@ namespace CasualFun
             
             playerData.AddCoins(-1);
             
-            Assert.IsTrue(playerData.Coins == coins);
+            Assert.AreEqual(playerData.Coins, coins);
         }
 
         [Test]
@@ -81,7 +83,7 @@ namespace CasualFun
             playerData.SetHighScore(1500);
             playerData.SetHighScore(300);
             
-            Assert.IsTrue(playerData.HighScore == 1500);
+            Assert.AreEqual(playerData.HighScore, 1500);
         }
 
         [Test]
@@ -110,13 +112,14 @@ namespace CasualFun
             Assert.IsTrue(notified);
         }
 
-        // [Test]
-        // public void IncreaseLevel_ShouldNotExceedMaximum()
-        // {
-        //     var playerData = new PlayerData();
-        //
-        //     playerData.Level = 100;
-        //     playerData.IncreaseLevel();
-        // }
+        [Test]
+        public void IncreaseLevel_ShouldIncreaseLevelByOne()
+        {
+            var playerData = new PlayerData();
+        
+            playerData.IncreaseLevel();
+            
+            Assert.AreEqual(playerData.Level, 2);
+        }
     }
 }

@@ -1,115 +1,93 @@
 ﻿using System.Collections;
 using CasualFun.AtCirclesEdge.Audio;
 using CasualFun.AtCirclesEdge.Game.Levels;
-using CasualFun.AtCirclesEdge.Player;
 using CasualFun.AtCirclesEdge.Pooling;
 using CasualFun.AtCirclesEdge.State;
+using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge.Game
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance;
+        
+        [SerializeField] LevelManager levelManager;
+        [SerializeField] ScoreManager scoreManager;
         [SerializeField] AudioPlayer audioPlayer;
+        [SerializeField] MusicPlayer musicPlayer;
         [SerializeField] Spawner spawner;
-        [SerializeField] int collectableEffectPoolIndex;
-        [SerializeField] int explosionEffectPoolIndex = 1;
-
-        LevelManager _levelManager;
-        ScoreManager _scoreManager;
         
-        void Awake()
-        {
-            _levelManager = GetComponent<LevelManager>();
-            _scoreManager = GetComponent<ScoreManager>();
-        }
+        public bool GameIsRunning { get; private set; }
 
-        void OnEnable()
-        {
-            GameStateEventHandler.GameStarted += GameStarted;
-            PlayerData.NewHighScoreAchieved += NewHighScoreAchieved;
-            EventManager.PlayerPickedUpScorePoint += PlayerPickedUpScorePoint;
-            EventManager.PlayerPickedUpCoin += PlayerPickedUpCoin;
-            EventManager.PlayerWasHitByEnemy += PlayerWasHitByEnemy;
-        }
+        void Awake() => Instance = this;
 
-        void Start() => _levelManager.InitializeLevel();
+        void Start() => levelManager.PrepareLevel();
 
-        void OnDisable()
+        public void StartGame()
         {
-            GameStateEventHandler.GameStarted -= GameStarted;
-            PlayerData.NewHighScoreAchieved -= NewHighScoreAchieved;
-            EventManager.PlayerPickedUpScorePoint -= PlayerPickedUpScorePoint;
-            EventManager.PlayerPickedUpCoin -= PlayerPickedUpCoin;
-            EventManager.PlayerWasHitByEnemy -= PlayerWasHitByEnemy;
+            GameIsRunning = true;
+            GameStateEventHandler.OnGameStarted();
+            musicPlayer.PlayMusic();
         }
         
-        void GameStarted()
-        {
-            ResetTimeScale();
-            _scoreManager.ResetScore();
-        }
-
         IEnumerator GameOver()
         {
-            ResetTimeScale();
-            PlayerDataManager.PlayerData.SetHighScore(_scoreManager.Score);
-            PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
-            yield return new WaitForSeconds(1.5f);
-            GameStateHandler.EndGame();
-            yield return new WaitForSeconds(1f);
-            _levelManager.InitializeLevel();
+            // GameIsRunning = false;
+            // audioPlayer.OnGameOver();
+            // yield return new WaitForSeconds(1.5f);
+            // GameStateEventHandler.OnGameOver();
+            // yield return new WaitForSeconds(1f);
+            // levelManager.PrepareLevel();
+            yield break;
         }
 
-        static void ResetTimeScale() => Time.timeScale = 1;
-
-        void PlayerWasHitByEnemy(Transform playerTransform)
+        public void PlayerWasHitByEnemy(Transform playerTransform)
         {
-            SpawnEffect(explosionEffectPoolIndex, playerTransform.position, playerTransform.rotation);
-            audioPlayer.OnGameOver();
+            musicPlayer.StopMusic();
+            spawner.Spawn((int)EffectPool.Explosion, playerTransform.position, playerTransform.rotation);
             StartCoroutine(GameOver());
         }
-
-        void PlayerPickedUpScorePoint(Vector3 position)
+        
+        public void PlayerPickedUpCoin(Vector3 position)
         {
-            _scoreManager.AddScore(1);
-            SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);
-            audioPlayer.OnItemCollected();
+            ShowCollectionEffects(position);
+            PlayerDataInstance.PlayerData.AddCoins(1);
+        }
 
-            if (!_levelManager.IsOnLastWave)
+        public void PlayerPickedUpScorePoint(Vector3 position)
+        {
+            ShowCollectionEffects(position);
+            scoreManager.AddScore(1);
+            
+            if (levelManager.HasFinishedAllLevels)
             {
-                _levelManager.SpawnNextWave();
+                GameIsRunning = false;
+                GameStateEventHandler.OnLevelCompleted();
                 return;
             }
 
-            if (_levelManager.HasFinishedAllLevels)
+            if (!levelManager.IsOnLastWave)
             {
-                Debug.Log("Congratulations. You have completed all levels");
+                levelManager.SpawnNextWave();
                 return;
             }
             
-            PlayerDataManager.PlayerData.IncreaseLevel();
-            PlayerDataService.OnPlayerDataIsReadyToBeSaved(PlayerDataManager.PlayerData);
-            _levelManager.InitializeLevel();
-            
-            // TODO: Reset player and show popup for completed level 
+            CompleteCurrentLevelAndPrepareTheNext();
         }
-        
-        void PlayerPickedUpCoin(Vector3 position)
-        {
-            PlayerDataManager.PlayerData.AddCoins(1);
-            SpawnEffect(collectableEffectPoolIndex, position, Quaternion.identity);
-            audioPlayer.OnItemCollected();
-        }
-        
-        void SpawnEffect(int poolIndex, Vector3 position, Quaternion rotation)
-            => spawner.Spawn(poolIndex, position, rotation);
 
-        static void NewHighScoreAchieved(int highScore)
+        void CompleteCurrentLevelAndPrepareTheNext()
         {
-            // TODO
-            // Notify player visually about the new high score
-            // Debug.Log("Player got new high score. Yay!!!");
+            GameIsRunning = false;
+            GameStateEventHandler.OnLevelCompleted();
+            PlayerDataInstance.PlayerData.IncreaseLevel();
+            levelManager.PrepareLevel();
+        }
+
+        void ShowCollectionEffects(Vector3 position)
+        {
+            audioPlayer.OnItemCollected();
+            spawner.Spawn((int)EffectPool.Collect, position, Quaternion.identity);
         }
     }
 }
