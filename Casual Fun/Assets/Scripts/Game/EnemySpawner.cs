@@ -42,7 +42,7 @@ namespace CasualFun.AtCirclesEdge.Game
 
         void LaunchEnemy(GameObject enemyFromPool)
         {
-            audioPlayer.OnEnemySpawned();
+            //audioPlayer.OnEnemySpawned();
             enemyFromPool.transform.eulerAngles += LaunchDirection;
         }
 

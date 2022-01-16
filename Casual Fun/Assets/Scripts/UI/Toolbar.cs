@@ -16,9 +16,9 @@ namespace CasualFun.AtCirclesEdge.UI
 
         void ShowPlayerData()
         {
-            playerName.text = PlayerDataInstance.PlayerData.Name;
-            highScore.text = $"High score: {PlayerDataInstance.PlayerData.HighScore.WithThousandSeparator()}";
-            coins.text = $"{PlayerDataInstance.PlayerData.Coins.WithThousandSeparator()}";
+            playerName.text = PlayerDataInstance.Instance.PlayerData.Name;
+            highScore.text = $"High score: {PlayerDataInstance.Instance.PlayerData.HighScore.WithThousandSeparator()}";
+            coins.text = $"{PlayerDataInstance.Instance.PlayerData.Coins.WithThousandSeparator()}";
         }
     }
 }

@@ -1,34 +1,33 @@
-using System.Collections.Generic;
+using CasualFun.AtCirclesEdge.Audio;
+using CasualFun.AtCirclesEdge.Storage;
 using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge.Screens
 {
     public class Menu : MonoBehaviour
     {
-        [SerializeField] GameObject mainScreen;
-        [SerializeField] GameObject optionsScreen;
-        [SerializeField] GameObject leaderboardScreen;
-        [SerializeField] GameObject storeScreen;
-
-        ScreenManager _screenManager;
-        Camera _camera;
-
-        void Awake() => _camera = Camera.main;
-
-        void Start() => _screenManager = new ScreenManager(new List<GameObject> { mainScreen, optionsScreen, leaderboardScreen, storeScreen });
-        
-        public void OnOptions() => OpenScreenWithAnimation(optionsScreen);
-        
-        public void OnLeaderboard() => OpenScreenWithAnimation(leaderboardScreen);
-        
-        public void OnStore() => OpenScreenWithAnimation(storeScreen);
-        
-        public void OnHome() => OpenScreenWithAnimation(mainScreen);
-
-        void OpenScreenWithAnimation(GameObject screen)
+        public void OnToggleSound()
         {
-            _screenManager.OpenScreen(screen);
-            _camera.enabled = screen == mainScreen;
+            var hasAudio = Preferences.HasAudio;
+            
+            Preferences.SetAudio(!hasAudio);
+            AudioEventHandler.OnSoundOptionChanged(!hasAudio);
         }
+
+        public void OnToggleMusic()
+        {
+            var hasMusic = Preferences.HasMusic;
+            
+            Preferences.SetMusic(!hasMusic);
+            AudioEventHandler.OnMusicOptionChanged(!hasMusic);
+        }
+        
+        public void OnOptions() => SceneLoader.LoadScene("_Options");
+
+        public void OnStore() => SceneLoader.LoadScene("_Store");
+
+        public void OnLevels() => SceneLoader.LoadScene("_Levels");
+
+        public void OnLeaderboard() => SceneLoader.LoadScene("_Leaderboard");
     }
 }

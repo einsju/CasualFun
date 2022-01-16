@@ -29,6 +29,7 @@ namespace CasualFun.AtCirclesEdge.Game
         protected override void OnGameOver()
         {
             base.OnGameOver();
+            _spriteRenderer.enabled = _collider.enabled = true;
             ResetRotation();
         }
 

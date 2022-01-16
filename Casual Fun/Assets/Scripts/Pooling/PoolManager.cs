@@ -10,7 +10,11 @@ namespace CasualFun.AtCirclesEdge.Pooling
     {
         readonly Dictionary<Pool, Queue<GameObject>> _pools = new Dictionary<Pool, Queue<GameObject>>();
 
-        PoolManager() => GameStateEventHandler.GameOver += ResetPools;
+        PoolManager()
+        {
+            GameStateEventHandler.LevelCompleted += ResetPools;
+            GameStateEventHandler.GameOver += ResetPools;
+        }
 
         public PoolManager(Pool toPool, Transform parent) : this()
             => InitializePool(new List<Pool> { toPool }, parent);
@@ -24,7 +28,11 @@ namespace CasualFun.AtCirclesEdge.Pooling
             CreatePool(parent);
         }
         
-        ~PoolManager() => GameStateEventHandler.GameOver -= ResetPools;
+        ~PoolManager()
+        {
+            GameStateEventHandler.GameOver -= ResetPools;
+            GameStateEventHandler.LevelCompleted -= ResetPools;
+        }
 
         void CreatePool(Transform parent)
         {

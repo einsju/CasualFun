@@ -4,14 +4,8 @@ using UnityEngine;
 namespace CasualFun.AtCirclesEdge.Audio
 {
     [RequireComponent(typeof(AudioSource))]
-    public class AudioPlayer : MonoBehaviour
-    {
-        [SerializeField] AudioClip button;
-        [SerializeField] AudioClip screenTransition;
-        [SerializeField] AudioClip itemCollected;
-        [SerializeField] AudioClip enemySpawned;
-        [SerializeField] AudioClip gameOver;
-        
+    public abstract class AudioPlayer : MonoBehaviour
+    {   
         AudioSource _audioSource;
         bool _hasAudio;
 
@@ -19,28 +13,17 @@ namespace CasualFun.AtCirclesEdge.Audio
         {
             _audioSource = GetComponent<AudioSource>();
             _hasAudio = Preferences.HasAudio;
+            AudioEventHandler.SoundOptionChanged += SoundOptionChanged;
         }
 
-        void OnEnable() => AudioEventHandler.SoundOptionChanged += SoundOptionChanged;
+        void OnDestroy() => AudioEventHandler.SoundOptionChanged -= SoundOptionChanged;
         
-        void OnDisable() => AudioEventHandler.SoundOptionChanged -= SoundOptionChanged;
-
-        public void OnButtonClick() => PlayClip(button);
-        
-        public void OnScreenTransition() => PlayClip(screenTransition);
-
-        public void OnItemCollected() => PlayClip(itemCollected);
-        
-        public void OnEnemySpawned() => PlayClip(enemySpawned);
-
-        public void OnGameOver() => PlayClip(gameOver);
-
-        void PlayClip(AudioClip clip)
+        protected void Play(AudioClip clip)
         {
             if (!_hasAudio) return;
             _audioSource.PlayOneShot(clip);
         }
-
+        
         void SoundOptionChanged(bool value) => _hasAudio = value;
     }
 }

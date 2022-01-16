@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class PlayerDataInstance : MonoBehaviour
 {
+    public static PlayerDataInstance Instance;
+    
     public static event Action PlayerDataInstanceUpdated;
-    public static PlayerData PlayerData { get; private set; }
+    
+    public PlayerData PlayerData { get; private set; }
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         PlayerDataLoader.PlayerDataLoaded += PlayerDataUpdated;
         PlayerData.PlayerDataUpdated += PlayerDataUpdated;
     }
@@ -19,7 +29,7 @@ public class PlayerDataInstance : MonoBehaviour
         PlayerData.PlayerDataUpdated -= PlayerDataUpdated;
     }
 
-    static void PlayerDataUpdated(PlayerData data)
+    void PlayerDataUpdated(PlayerData data)
     {
         PlayerData = data;
         PlayerDataInstanceUpdated?.Invoke();

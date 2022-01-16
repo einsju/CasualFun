@@ -14,8 +14,7 @@ namespace CasualFun.AtCirclesEdge.Game
         
         [SerializeField] LevelManager levelManager;
         [SerializeField] ScoreManager scoreManager;
-        [SerializeField] AudioPlayer audioPlayer;
-        [SerializeField] MusicPlayer musicPlayer;
+        [SerializeField] GameAudioPlayer audioPlayer;
         [SerializeField] Spawner spawner;
         
         public bool GameIsRunning { get; private set; }
@@ -27,49 +26,51 @@ namespace CasualFun.AtCirclesEdge.Game
         public void StartGame()
         {
             GameIsRunning = true;
+            SceneLoader.UnloadScene("_Menu");
             GameStateEventHandler.OnGameStarted();
-            musicPlayer.PlayMusic();
         }
         
         IEnumerator GameOver()
         {
-            // GameIsRunning = false;
-            // audioPlayer.OnGameOver();
-            // yield return new WaitForSeconds(1.5f);
-            // GameStateEventHandler.OnGameOver();
-            // yield return new WaitForSeconds(1f);
-            // levelManager.PrepareLevel();
-            yield break;
+            GameIsRunning = false;
+            audioPlayer.PlayGameOverSound();
+            yield return new WaitForSeconds(1.5f);
+            GameStateEventHandler.OnGameOver();
+            yield return new WaitForSeconds(1f);
+            levelManager.PrepareLevel();
+            SceneLoader.LoadScene("_Menu");
         }
 
         public void PlayerWasHitByEnemy(Transform playerTransform)
         {
-            musicPlayer.StopMusic();
             spawner.Spawn((int)EffectPool.Explosion, playerTransform.position, playerTransform.rotation);
             StartCoroutine(GameOver());
         }
         
         public void PlayerPickedUpCoin(Vector3 position)
         {
-            ShowCollectionEffects(position);
-            PlayerDataInstance.PlayerData.AddCoins(1);
+            audioPlayer.PlayItemCollectedSound();
+            spawner.Spawn((int)EffectPool.Collect, position, Quaternion.identity);
+            PlayerDataInstance.Instance.PlayerData.AddCoins(1);
         }
 
         public void PlayerPickedUpScorePoint(Vector3 position)
         {
-            ShowCollectionEffects(position);
+            audioPlayer.PlayItemCollectedSound();
+            spawner.Spawn((int)EffectPool.Collect, position, Quaternion.identity);
             scoreManager.AddScore(1);
             
             if (levelManager.HasFinishedAllLevels)
             {
                 GameIsRunning = false;
                 GameStateEventHandler.OnLevelCompleted();
+                Debug.Log("You have rounded all levels. Congrats to you for that!!!");
                 return;
             }
 
             if (!levelManager.IsOnLastWave)
             {
-                levelManager.SpawnNextWave();
+                levelManager.OnWaveCompleted();
                 return;
             }
             
@@ -79,15 +80,9 @@ namespace CasualFun.AtCirclesEdge.Game
         void CompleteCurrentLevelAndPrepareTheNext()
         {
             GameIsRunning = false;
+            PlayerDataInstance.Instance.PlayerData.IncreaseLevel();
             GameStateEventHandler.OnLevelCompleted();
-            PlayerDataInstance.PlayerData.IncreaseLevel();
             levelManager.PrepareLevel();
-        }
-
-        void ShowCollectionEffects(Vector3 position)
-        {
-            audioPlayer.OnItemCollected();
-            spawner.Spawn((int)EffectPool.Collect, position, Quaternion.identity);
         }
     }
 }
