@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using CasualFun.AtCirclesEdge.Pooling;
-using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge.Game.Levels
