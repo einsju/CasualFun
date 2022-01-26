@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Threading.Tasks;
 using CasualFun.AtCirclesEdge.Audio;
 using CasualFun.AtCirclesEdge.Game.Levels;
 using CasualFun.AtCirclesEdge.Pooling;
@@ -26,25 +26,26 @@ namespace CasualFun.AtCirclesEdge.Game
         public void StartGame()
         {
             GameIsRunning = true;
-            SceneLoader.UnloadScene("_Menu");
+            SceneLoader.UnloadScene(SceneNames.Menu);
             GameStateEventHandler.OnGameStarted();
         }
         
-        IEnumerator GameOver()
+        async Task GameOver()
         {
             GameIsRunning = false;
             audioPlayer.PlayGameOverSound();
-            yield return new WaitForSeconds(1.5f);
+            PlayerDataInstance.Instance.PlayerData.SetHighScore(scoreManager.Score);
+            await Task.Delay(1000);
             GameStateEventHandler.OnGameOver();
-            yield return new WaitForSeconds(1f);
+            await Task.Delay(500);
             levelManager.PrepareLevel();
-            SceneLoader.LoadScene("_Menu");
+            SceneLoader.LoadScene(SceneNames.Menu);
         }
 
-        public void PlayerWasHitByEnemy(Transform playerTransform)
+        public async Task PlayerWasHitByEnemy(Transform playerTransform)
         {
             spawner.Spawn((int)EffectPool.Explosion, playerTransform.position, playerTransform.rotation);
-            StartCoroutine(GameOver());
+            await GameOver();
         }
         
         public void PlayerPickedUpCoin(Vector3 position)

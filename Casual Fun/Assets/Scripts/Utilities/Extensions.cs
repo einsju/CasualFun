@@ -1,5 +1,6 @@
 using System.Globalization;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CasualFun.AtCirclesEdge.Utilities
 {

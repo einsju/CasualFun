@@ -8,26 +8,22 @@ namespace CasualFun.AtCirclesEdge.Game
     {
         [SerializeField] TextMeshProUGUI scoreText;
 
-        int _score;
+        public int Score { get; private set; }
 
-        void Awake()
-        {
-            GameStateEventHandler.GameStarted += ResetScore;
-            //GameStateEventHandler.LevelCompleted += () => PlayerDataInstance.PlayerData.SetHighScore(_score);
-        }
+        void Awake() => GameStateEventHandler.GameStarted += ResetScore;
 
         public void AddScore(int score)
         {
-            _score += score;
+            Score += score;
             ShowScore();
         }
 
         void ResetScore()
         {
-            _score = 0;
+            Score = 0;
             ShowScore();
         }
 
-        void ShowScore() => scoreText.text = $"{_score}";
+        void ShowScore() => scoreText.text = $"{Score}";
     }
 }

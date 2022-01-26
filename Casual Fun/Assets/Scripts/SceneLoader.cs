@@ -7,13 +7,13 @@ namespace CasualFun.AtCirclesEdge
         public static void LoadScene(string name)
         {
             if (SceneManager.GetSceneByName(name).isLoaded) return;
-            SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+            TaskDelayAwaiter.Wait(() => SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive));
         }
 
         public static void UnloadScene(string name)
         {
             if (!SceneManager.GetSceneByName(name).isLoaded) return;
-            SceneManager.UnloadSceneAsync(name);
+            TaskDelayAwaiter.Wait(() => SceneManager.UnloadSceneAsync(name));
         }
     }
 }

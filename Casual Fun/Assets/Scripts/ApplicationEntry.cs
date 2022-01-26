@@ -1,3 +1,4 @@
+using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
 
 namespace CasualFun.AtCirclesEdge
@@ -7,7 +8,7 @@ namespace CasualFun.AtCirclesEdge
         void Start()
         {
             // Always start game with options activated 
-            SceneLoader.LoadScene("_Menu");
+            SceneLoader.LoadScene(SceneNames.Menu);
         }
     }
 }
