@@ -53,10 +53,10 @@ namespace CasualFun.AtCirclesEdge.Game
 
         void OnTriggerEnter2D(Collider2D other) => other.GetComponent<ICollectable>()?.Collect();
 
-        public void Kill()
+        public async void Kill()
         {
             _spriteRenderer.enabled = _collider.enabled = false;
-            GameManager.Instance.PlayerWasHitByEnemy(transform);
+            await GameManager.Instance.PlayerWasHitByEnemy(transform);
         }
     }
 }

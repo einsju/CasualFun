@@ -1,3 +1,4 @@
+using CasualFun.AtCirclesEdge.Game;
 using CasualFun.AtCirclesEdge.Utilities;
 using UnityEngine;
 
@@ -5,8 +6,6 @@ namespace CasualFun.AtCirclesEdge.Screens
 {
     public class Menu : MonoBehaviour
     {
-        void Awake() => SceneLoader.LoadScene(SceneNames.Toolbar);
-
         public void OnOptions() => SceneLoader.LoadScene(SceneNames.Options);
 
         public void OnStore() => SceneLoader.LoadScene(SceneNames.Store);
@@ -14,5 +13,7 @@ namespace CasualFun.AtCirclesEdge.Screens
         public void OnLevels() => SceneLoader.LoadScene(SceneNames.Levels);
 
         public void OnLeaderboard() => SceneLoader.LoadScene(SceneNames.Leaderboard);
+
+        public void OnStartGame() => GameManager.Instance.StartGame();
     }
 }

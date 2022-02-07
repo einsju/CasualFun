@@ -9,6 +9,5 @@ namespace CasualFun.AtCirclesEdge.Utilities
         public const string Menu = "_Menu";
         public const string Options = "_Options";
         public const string Store = "_Store";
-        public const string Toolbar = "_Toolbar";
     }
 }

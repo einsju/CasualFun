@@ -5,7 +5,7 @@ namespace CasualFun.AtCirclesEdge.Player
     [Serializable]
     public class PlayerData
     {
-        public const string DefaultPlayerName = "Guest player";
+        public const string DefaultPlayerName = "Guest Player";
 
         public static event Action<PlayerData> PlayerDataUpdated;
         public static event Action<int> NewHighScoreAchieved;

@@ -6,7 +6,7 @@ namespace CasualFun.AtCirclesEdge.Screens
 {
     public class Toolbar : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI playerName;
+        [SerializeField] TextMeshProUGUI highscore;
         [SerializeField] TextMeshProUGUI coins;
 
         void Awake() => PlayerDataInstance.PlayerDataInstanceUpdated += ShowPlayerData;
@@ -18,7 +18,7 @@ namespace CasualFun.AtCirclesEdge.Screens
         void ShowPlayerData()
         {
             if (PlayerDataInstance.Instance.PlayerData is null) return;
-            playerName.text = PlayerDataInstance.Instance.PlayerData.Name;
+            highscore.text = $"BEST: {PlayerDataInstance.Instance.PlayerData.HighScore.WithThousandSeparator()}";
             coins.text = $"{PlayerDataInstance.Instance.PlayerData.Coins.WithThousandSeparator()}";
         }
     }
