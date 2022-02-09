@@ -52,6 +52,8 @@ namespace CasualFun.AtCirclesEdge.Pooling
             var correctPool = FindPool(pool);
             var itemFromPool = correctPool.Value.Dequeue();
 
+            if (itemFromPool is null) return null;
+
             if (!usingLocalPosition)
                 itemFromPool.transform.position = position;
             else
